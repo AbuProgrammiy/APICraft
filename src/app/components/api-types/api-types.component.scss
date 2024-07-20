@@ -1,0 +1,49 @@
+.main{
+    width: 100%;
+    height:auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inner-main{
+    width: 70%;  
+}
+
+.main-header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: white;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.active-card:hover{
+    cursor: pointer;
+}
+
+.space-30{
+    height: 30px;
+}
+
+.disabled-card{
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.card-header{
+    font-weight: 700;
+}
+
+.flexible-header{
+    color: blue;
+}
+
+.custom-header{
+    color: green;
+}
+
+.advanced-header{
+    color: red;
+}

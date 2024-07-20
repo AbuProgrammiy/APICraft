@@ -1,20 +1,68 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" routerLink="">APICraft</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="my-apis">MyAPIs</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="news">News</a>
-          </li>
-          
-        </ul>
-        <a class="nav-link active profile" aria-current="page" routerLink="profile">Profile</a>
-      </div>
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="">APICraft</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="generate-api">
+            @if (lang=="Uzbek") {
+            Generate API
+            }
+            @else if (lang=="English") {
+            API generatsiya
+            }</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="my-apis">
+            @if (lang=="Uzbek") {
+            Mening APIlarim
+            }
+            @else if (lang=="English") {
+            My APIs
+            }
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="news">
+            @if (lang=="Uzbek") {
+            Ynagiliklar
+            }
+            @else if (lang=="English") {
+            News
+            }
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{lang}}
+          </a>
+          <ul class="dropdown-menu">
+            <li><a (click)="chooseLang('Uzbek')" class="dropdown-item">Uzbek</a></li>
+            <li><a (click)="chooseLang('English')" class="dropdown-item">English</a></li>
+          </ul>
+        </li>
+      </ul>
+      <a class="nav-link active profile" aria-current="page" routerLink="profile">
+        @if (lang=="Uzbek") {
+        Profil
+        }
+        @else if (lang=="English") {
+        Profile
+        }
+      </a>
     </div>
-  </nav>
+  </div>
+</nav>
+
+<!--
+  @if (lang=="Uzbek") {
+
+            }
+            @else if (lang=="English") {
+              
+            }
+-->

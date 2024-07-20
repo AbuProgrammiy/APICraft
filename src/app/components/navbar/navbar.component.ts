@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
 
+  lang = localStorage.getItem("language") != null ? localStorage.getItem("language") : "Uzbek"
+
+  @Output() changeLang = new EventEmitter();
+
+  chooseLang(choosenLang: string) {
+    this.lang = choosenLang;
+    this.changeLang.emit(this.lang);
+    localStorage.setItem("language", this.lang);
+  }
 }

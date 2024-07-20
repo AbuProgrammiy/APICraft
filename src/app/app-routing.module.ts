@@ -5,12 +5,14 @@ import { EmailVerificationComponent } from './pages/auth-pages/email-verificatio
 import { HomeComponent } from './pages/main-pages/home/home.component';
 import { ForgotPasswordComponent } from './pages/auth-pages/forgot-password/forgot-password.component';
 import { MyAPIsComponent } from './pages/main-pages/my-apis/my-apis.component';
+import { GenerateApiComponent } from './pages/main-pages/generate-api/generate-api.component';
 
 const routes: Routes = [
   {path:"sign-in-up",component:SignInUpComponent},
   {path:"email-verifications",component:EmailVerificationComponent},
   {path:"forgot-password",component:ForgotPasswordComponent},
   {path:"my-apis",component:MyAPIsComponent},
+  {path:"generate-api",component:GenerateApiComponent},
   {path:"",component:HomeComponent}
 ];
 
