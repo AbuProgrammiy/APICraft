@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'api-types',
@@ -6,5 +6,10 @@ import { Component, Input } from '@angular/core';
   styleUrl: './api-types.component.scss'
 })
 export class ApiTypesComponent {
-  @Input() lang!:string;
+  @Input() lang!: string;
+  @Output() selectAPIType = new EventEmitter();
+
+  selectType(type: string) {
+    this.selectAPIType.emit(type)
+  }
 }

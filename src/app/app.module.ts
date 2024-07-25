@@ -23,6 +23,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { MyAPIsComponent } from './pages/main-pages/my-apis/my-apis.component';
 import { ApiTypesComponent } from './components/api-types/api-types.component';
 import { GenerateApiComponent } from './pages/main-pages/generate-api/generate-api.component';
+import { TableNameInputComponent } from './secondary-components/table-name-input/table-name-input.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { GenerateApiComponent } from './pages/main-pages/generate-api/generate-a
     MyAPIsComponent,
     ApiTypesComponent,
     GenerateApiComponent,
+    TableNameInputComponent,
   ],
   imports: [
     BrowserModule,

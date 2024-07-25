@@ -10,7 +10,7 @@
       }
     </h3>
 
-    <div class="card active-card" data-bs-theme="dark">
+    <div (click)="selectType('Flexible') " class="card active-card" data-bs-theme="dark">
       <div class="card-header flexible-header">
         @if (lang=="Uzbek") {
         Moslashuvchan
@@ -45,7 +45,7 @@
 
     <div class="space-30"></div>
 
-    <div class="card disabled-card" data-bs-theme="dark">
+    <div (click)="selectType('Custom')" class="card disabled-card" data-bs-theme="dark">
       <div class="card-header custom-header">
         @if(lang=="Uzbek"){
         Buyurtma
@@ -81,7 +81,7 @@
 
     <div class="space-30"></div>
 
-    <div class="card disabled-card" data-bs-theme="dark">
+    <div (click)="selectType('Advanced')" class="card disabled-card" data-bs-theme="dark">
       <div class="card-header advanced-header">
         @if (lang=="Uzbek") {
         Ilg'or

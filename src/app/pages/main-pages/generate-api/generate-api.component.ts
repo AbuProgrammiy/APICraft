@@ -8,7 +8,21 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class GenerateApiComponent {
   lang = localStorage.getItem("language") != null ? localStorage.getItem("language") : "Uzbek"
 
-  changeLang(lang:string){
-    this.lang=lang
+  currentMode: string = "choosingMode"
+
+  table={
+    "tableName":""
+  }
+
+  changeLang(lang: string) {
+    this.lang = lang
+  }
+
+  selectAPIType(type: any) {
+    this.currentMode = "tableNameInput"
+  }
+
+  changeCurrentMode(mode: any) {
+    this.currentMode = mode
   }
 }
