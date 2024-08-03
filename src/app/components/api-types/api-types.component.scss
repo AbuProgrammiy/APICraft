@@ -4,6 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: black;
 }
 
 .inner-main{
@@ -19,12 +20,12 @@
     margin-top: 50px;
 }
 
-.active-card:hover{
-    cursor: pointer;
+.card{
+    margin-bottom: 30px;
 }
 
-.space-30{
-    height: 30px;
+.active-card:hover{
+    cursor: pointer;
 }
 
 .disabled-card{

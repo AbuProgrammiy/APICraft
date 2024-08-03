@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../../services/auth.service';
+import { AuthService } from '../../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 
@@ -35,7 +35,7 @@ export class SignInUpComponent {
           this.router.navigate(["/email-verifications"])
         }
         else {
-          this.messageService.add({ severity: 'contrast', summary: 'Warning', detail: response.message });
+          this.messageService.add({ severity: 'contrast', summary: 'Warning', detail: response.response });
         }
         this.isJoining = false
       },
@@ -63,7 +63,7 @@ export class SignInUpComponent {
           this.router.navigate([""])
         }
         else {
-          this.messageService.add({ severity: 'contrast', summary: 'Warning', detail: response.message });
+          this.messageService.add({ severity: 'contrast', summary: 'Warning', detail: response.response });
         }
         this.isInning = false
       },
@@ -90,7 +90,7 @@ export class SignInUpComponent {
           this.router.navigate(["forgot-password"])
         }
         else {
-          this.messageService.add({ severity: 'contrast', summary: 'Warning', detail: response.message });
+          this.messageService.add({ severity: 'contrast', summary: 'Warning', detail: response.response });
         }
         this.isForgeted = false
       },

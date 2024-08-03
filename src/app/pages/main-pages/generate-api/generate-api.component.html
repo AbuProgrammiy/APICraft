@@ -4,6 +4,14 @@
         <api-types [lang]="lang!" (selectAPIType)="selectAPIType($event)"/>
     }
     @else if (currentMode=="tableNameInput") {
-        <table-name-input [lang]="lang!" (changeCurrentMode)="changeCurrentMode($event)"/>
+        <table-name-input [lang]="lang!" (changeCurrentMode)="changeCurrentMode($event)" (sendTableName)="getTableName($event)"/>
+    }
+    @else if (currentMode=="coulmnInputs"){
+        <coulm-inputs [lang]="lang!" [tableName]="tableName!" (changeCurrentMode)="changeCurrentMode($event)"/>
+    }
+    @else if (currentMode=="showResult") {
+        <flexible-table/>
     }
 </div>
+
+<p-toast/>

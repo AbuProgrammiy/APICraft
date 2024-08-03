@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-generate-api',
@@ -9,10 +9,7 @@ export class GenerateApiComponent {
   lang = localStorage.getItem("language") != null ? localStorage.getItem("language") : "Uzbek"
 
   currentMode: string = "choosingMode"
-
-  table={
-    "tableName":""
-  }
+  tableName!: string
 
   changeLang(lang: string) {
     this.lang = lang
@@ -24,5 +21,10 @@ export class GenerateApiComponent {
 
   changeCurrentMode(mode: any) {
     this.currentMode = mode
+  }
+
+  getTableName(name: any) {
+    this.tableName = name
+    this.currentMode = "coulmnInputs"
   }
 }

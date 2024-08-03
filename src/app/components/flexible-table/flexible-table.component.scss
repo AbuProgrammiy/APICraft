@@ -1,0 +1,81 @@
+.content-handler {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.inner-main {
+    width: 700px;
+    border-radius: 10px;
+    border: 1px solid gray;
+    overflow: hidden;
+}
+
+table {
+    margin: 0;
+}
+
+.table-name-handler {
+    text-align: center;
+    font-size: 30px;
+}
+
+td,
+th {
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.accordion-button {
+    padding: 5px;
+}
+
+.btn-request {
+    width: 80px;
+    padding: 0;
+}
+
+.request-url-header {
+    margin-left: 10px;
+}
+
+.input-group {
+    width: 350px;
+    margin-bottom: 15px;
+}
+
+.input-group-text {
+    min-width: 110px;
+}
+
+.required-sign {
+    color: orangered;
+}
+
+.btn-execute {
+    width: 100%;
+    padding: 0;
+}
+
+.responses-handler {
+    margin-top: 10px;
+}
+
+.json-handler {
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: auto;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgb(20, 20, 20);
+}
+
+.response-value{
+    color: greenyellow;
+}
+
+.request-url-handler{
+    padding: 10px;
+    background-color: rgb(20, 20, 20);
+}

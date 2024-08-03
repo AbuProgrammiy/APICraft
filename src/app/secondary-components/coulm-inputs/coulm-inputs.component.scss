@@ -1,0 +1,56 @@
+.main{
+    width: 100%;
+    min-height: 92vh;
+    background-color: black;
+}
+
+.back-arrow{
+    
+    margin-left: 40px;
+    color: white;
+    font-size: 50px;
+}
+
+.back-arrow:hover{
+    cursor: pointer;
+}
+
+.content-handler{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.table-name-sign{
+    font-size: 30px;
+    color: white;
+}
+
+.table-name{
+    color: rgb(25,135,84);
+}
+
+.description{
+    font-size: 20px;
+    padding-top: 30px;
+    color: white;
+}
+
+.ipnuts-handler{
+    width: 100%;
+    margin-top: 50px;
+}
+
+.input-group{
+    width: 500px;
+    margin-bottom: 25px;
+}
+
+.btn{
+    width: 200px;
+    margin-top: 25px;
+}
+
+.btn-generate{
+    margin-bottom: 50px;
+}

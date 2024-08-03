@@ -1,0 +1,80 @@
+<div class="content-handler">
+    <div class="inner-main">
+        <table class="table table-dark table-striped table-head">
+            <thead>
+                <tr class="table-name-handler">
+                    <th>{{tableName}}</th>
+                </tr>
+            </thead>
+        </table>
+        <table class="table table-dark table-striped table-hover">
+            <tbody id="columns-handler">
+                <tr>
+                    <th scope="row">Column Name</th>
+                    <td colspan="2">Column Type</td>
+                </tr>
+                @for (column of columns; track $index) {
+                <tr>
+                    <th scope="row">{{column}}</th>
+                    <td colspan="2">Column Type</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        <div data-bs-theme="dark" class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <div class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <button class="btn btn-primary btn-request">Get</button>
+                        <span class="request-url-header">/GetAll/&#123;securityKey&#125;/&#123;tableName&#125;</span>
+                    </div>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <p>Paramaetrs:</p>
+                        <div class="input-group">
+                            <span class="input-group-text">securityKey<span class="required-sign">*</span></span>
+                            <input [(ngModel)]="securityKey" type="text" class="form-control" placeholder="securityKey">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-text">tableName<span class="required-sign">*</span></span>
+                            <input [(ngModel)]="tableName" type="text" class="form-control" placeholder="tableName">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-text">page</span>
+                            <input [(ngModel)]="page" type="number" class="form-control" placeholder="page">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-text">column</span>
+                            <input [(ngModel)]="count" type="number" class="form-control" placeholder="count">
+                        </div>
+                        <button (click)="executeGetAll()" class="btn btn-primary btn-execute">
+                            @if (isGettingAll) {
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            }
+                            @else {
+                            Execute
+                            }
+                        </button>
+                        <div class="responses-handler">
+                            <div id="response-handler">
+                                <!--Real Responses-->
+                            </div>
+                            <hr>
+                            <p>Response scheme</p>
+                            <pre class="json-handler">
+[
+  &#123;@for (column of columns; track $index) {
+    "{{column}}": "<span class="response-value">string</span>",}
+  &#125;
+]                           </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

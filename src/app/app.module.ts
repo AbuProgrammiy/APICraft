@@ -24,6 +24,9 @@ import { MyAPIsComponent } from './pages/main-pages/my-apis/my-apis.component';
 import { ApiTypesComponent } from './components/api-types/api-types.component';
 import { GenerateApiComponent } from './pages/main-pages/generate-api/generate-api.component';
 import { TableNameInputComponent } from './secondary-components/table-name-input/table-name-input.component';
+import { CoulmInputsComponent } from './secondary-components/coulm-inputs/coulm-inputs.component';
+import { FlexibleTableComponent } from './components/flexible-table/flexible-table.component';
+import { ExampleComponent } from './example/example.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,9 @@ import { TableNameInputComponent } from './secondary-components/table-name-input
     ApiTypesComponent,
     GenerateApiComponent,
     TableNameInputComponent,
+    CoulmInputsComponent,
+    FlexibleTableComponent,
+    ExampleComponent,
   ],
   imports: [
     BrowserModule,

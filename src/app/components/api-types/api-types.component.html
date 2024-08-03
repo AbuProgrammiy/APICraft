@@ -23,11 +23,11 @@
         <blockquote class="blockquote mb-0">
           <p>
             @if (lang=="Uzbek") {
-            Bitta Tabledan tashkil topgan API bo'lib uning columnlari istalgan tipdagi ma'lumotlarni saqlay oladi <br>
+            Bitta Tabledan tashkil topgan API bo'lib uning columnlari istalgan tipdagi ma'lumotlarni saqlay oladi (fayllardan tashqari). <br>
             Hechqanday talablari yo'q (<s>Id reuquired</s>).
             }
             @else if (lang=="English") {
-            API consiting only one table. Columns can save data in any type. <br>
+            API consiting only one table. Columns can save data in any type (except files). <br>
             Has no requirements (<s>Id required</s>).
             }
           </p>
@@ -42,8 +42,6 @@
         </blockquote>
       </div>
     </div>
-
-    <div class="space-30"></div>
 
     <div (click)="selectType('Custom')" class="card disabled-card" data-bs-theme="dark">
       <div class="card-header custom-header">
@@ -79,8 +77,6 @@
       </div>
     </div>
 
-    <div class="space-30"></div>
-
     <div (click)="selectType('Advanced')" class="card disabled-card" data-bs-theme="dark">
       <div class="card-header advanced-header">
         @if (lang=="Uzbek") {
@@ -113,5 +109,6 @@
         </blockquote>
       </div>
     </div>
+
   </div>
 </div>

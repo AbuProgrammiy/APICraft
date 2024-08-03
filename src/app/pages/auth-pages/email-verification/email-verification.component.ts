@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../../services/auth.service';
+import { AuthService } from '../../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 
@@ -33,7 +33,7 @@ export class EmailVerificationComponent {
           this.router.navigate([""])
         }
         else {
-          this.messageService.add({ severity: 'contrast', summary: 'Warning', detail: response.message });
+          this.messageService.add({ severity: 'contrast', summary: 'Warning', detail: response.response });
         }
         this.isVerifying = false
       },
@@ -54,10 +54,10 @@ export class EmailVerificationComponent {
     this.authService.verifyUser(body).subscribe({
       next: (response) => {
         if (response.isSuccess) {
-          this.messageService.add({ severity: 'contrast', summary: 'Success', detail: response.message });
+          this.messageService.add({ severity: 'contrast', summary: 'Success', detail: response.response });
         }
         else {
-          this.messageService.add({ severity: 'contrast', summary: 'Warning', detail: response.message });
+          this.messageService.add({ severity: 'contrast', summary: 'Warning', detail: response.response });
         }
         this.isResendingACode = false
       },

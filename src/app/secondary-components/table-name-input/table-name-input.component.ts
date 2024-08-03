@@ -8,8 +8,15 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class TableNameInputComponent {
   @Input() lang!: string
   @Output() changeCurrentMode = new EventEmitter()
+  @Output() sendTableName = new EventEmitter()
+
+  tableName!:string
 
   back() {
     this.changeCurrentMode.emit("choosingMode")
+  }
+
+  next(){
+    this.sendTableName.emit(this.tableName)
   }
 }

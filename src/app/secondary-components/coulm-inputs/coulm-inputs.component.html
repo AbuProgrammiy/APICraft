@@ -1,0 +1,72 @@
+<div class="main">
+    <p (click)="back()" class="back-arrow">&#8592;</p>
+    <div class="content-handler">
+        <h3 class="table-name-sign">
+            @if (lang=="Uzbek") {
+            Table nomi:
+            }
+            @else if (lang=="English") {
+            Table name:
+            }
+            <span class="table-name">{{tableName}}</span>
+        </h3>
+    </div>
+    <div class="content-handler">
+        <p class="description">
+            @if (lang=="Uzbek") {
+            tablega columnlar qo'shing
+            }
+            @else if (lang=="English") {
+            add coulmns to table
+            }
+        </p>
+    </div>
+    <div id="ipnuts-handler" class="ipnuts-handler">
+        <div class="content-handler">
+            <div data-bs-theme="dark" class="input-group">
+                <span class="input-group-text">column 1:</span>
+                <input id="input-1" type="text" class="form-control">
+            </div>
+        </div>
+    </div>
+    <div class="content-handler">
+        <button [class.disabled]="isGenerating" (click)="clearInputs()" class="btn btn-outline-light">
+            @if (lang=="Uzbek") {
+            Tozalash
+            }
+            @else if (lang=="English") {
+            Clear
+            }
+        </button>
+    </div>
+    <div class="content-handler">
+        <button [class.disabled]="isGenerating" id="add-input" (click)="addColumn()" [class.disabled]="count>20"
+            class="btn btn-primary">
+            @if (lang=="Uzbek") {
+            Column qo'shish
+            }
+            @else if (lang=="English") {
+            Add column
+            }
+        </button>
+    </div>
+    <div class="content-handler">
+        <button [class.disabled]="isGenerating" (click)="generateAPI()" class="btn btn-success btn-generate">
+            @if (isGenerating) {
+            <div class="spinner-border spinner-border-sm" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            }
+            @else {
+            @if (lang=="Uzbek") {
+            API generatsiaya qilish
+            }
+            @else if (lang=="English") {
+            Generate API
+            }
+            }
+        </button>
+    </div>
+</div>
+
+<p-toast />
