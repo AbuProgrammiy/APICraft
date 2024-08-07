@@ -11,12 +11,12 @@
             <tbody id="columns-handler">
                 <tr>
                     <th scope="row">Column Name</th>
-                    <td colspan="2">Column Type</td>
+                    <th colspan="2">Column Type</th>
                 </tr>
                 @for (column of columns; track $index) {
                 <tr>
-                    <th scope="row">{{column}}</th>
-                    <td colspan="2">Column Type</td>
+                    <td scope="row">{{column}}</td>
+                    <td colspan="2">any</td>
                 </tr>
                 }
             </tbody>
@@ -35,22 +35,22 @@
                         <p>Paramaetrs:</p>
                         <div class="input-group">
                             <span class="input-group-text">securityKey<span class="required-sign">*</span></span>
-                            <input [(ngModel)]="securityKey" type="text" class="form-control" placeholder="securityKey">
+                            <input [(ngModel)]="inputSecurityKey" type="text" class="form-control" placeholder="securityKey">
                         </div>
                         <div class="input-group">
                             <span class="input-group-text">tableName<span class="required-sign">*</span></span>
-                            <input [(ngModel)]="tableName" type="text" class="form-control" placeholder="tableName">
+                            <input [(ngModel)]="inputTableName" type="text" class="form-control" placeholder="tableName">
                         </div>
                         <div class="input-group">
                             <span class="input-group-text">page</span>
-                            <input [(ngModel)]="page" type="number" class="form-control" placeholder="page">
+                            <input [(ngModel)]="inputPage" type="number" class="form-control" placeholder="page">
                         </div>
                         <div class="input-group">
                             <span class="input-group-text">column</span>
-                            <input [(ngModel)]="count" type="number" class="form-control" placeholder="count">
+                            <input [(ngModel)]="inputPage" type="number" class="form-control" placeholder="count">
                         </div>
                         <button (click)="executeGetAll()" class="btn btn-primary btn-execute">
-                            @if (isGettingAll) {
+                            @if (isLoading) {
                             <div class="spinner-border spinner-border-sm" role="status">
                                 <span class="visually-hidden">Loading...</span>
                             </div>
