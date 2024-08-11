@@ -79,7 +79,7 @@ export class CoulmInputsComponent {
     for (let i = 1; i < this.count; i++) {
       const input = document.getElementById(`input-${i}`) as HTMLInputElement
       if (input.value != "") {
-        this.dataStorage[`coulumn${i}`] = input.value
+        this.dataStorage[`column${i}`] = input.value
       }
       else {
         this.messageService.add({ severity: 'contrast', summary: 'Please', detail: 'Fill the column(s) or remove it!' });
@@ -99,6 +99,7 @@ export class CoulmInputsComponent {
       next: (response) => {
         if (response.isSuccess == true) {
           this.dataStorage["tableId"] = response.response;
+          console.log(this.dataStorage);
 
           this.dataStorageService.create(this.dataStorage).subscribe({
             next: (response) => {

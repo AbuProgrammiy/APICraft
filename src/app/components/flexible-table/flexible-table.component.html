@@ -1,80 +1,384 @@
+@if (isDeleted==false) {
 <div class="content-handler">
-    <div class="inner-main">
-        <table class="table table-dark table-striped table-head">
-            <thead>
-                <tr class="table-name-handler">
-                    <th>{{tableName}}</th>
-                </tr>
-            </thead>
-        </table>
-        <table class="table table-dark table-striped table-hover">
-            <tbody id="columns-handler">
-                <tr>
-                    <th scope="row">Column Name</th>
-                    <th colspan="2">Column Type</th>
-                </tr>
-                @for (column of columns; track $index) {
-                <tr>
-                    <td scope="row">{{column}}</td>
-                    <td colspan="2">any</td>
-                </tr>
-                }
-            </tbody>
-        </table>
-        <div data-bs-theme="dark" class="accordion" id="accordionExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <div class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        <button class="btn btn-primary btn-request">Get</button>
-                        <span class="request-url-header">/GetAll/&#123;securityKey&#125;/&#123;tableName&#125;</span>
-                    </div>
-                </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <p>Paramaetrs:</p>
-                        <div class="input-group">
-                            <span class="input-group-text">securityKey<span class="required-sign">*</span></span>
-                            <input [(ngModel)]="inputSecurityKey" type="text" class="form-control" placeholder="securityKey">
+    <div>
+        <div class="inner-main">
+            <table class="table table-dark table-striped table-head">
+                <thead>
+                    <tr class="table-name-handler">
+                        <th>{{tableName}}</th>
+                    </tr>
+                </thead>
+            </table>
+            <table class="table table-dark table-striped table-hover">
+                <tbody id="columns-handler">
+                    <tr>
+                        <th scope="row">Column Name</th>
+                        <th colspan="2">Column Type</th>
+                    </tr>
+                    @for (column of columns; track $index) {
+                    <tr>
+                        <td scope="row">{{column}}</td>
+                        <td colspan="2">any</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+            <div data-bs-theme="dark" class="accordion accordion-flush" [id]="'accordion-'+tableName">
+                <!-- 1-item -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <div class="accordion-button collapsed get-header" type="button" data-bs-toggle="collapse"
+                            [attr.data-bs-target]="'#collapse-getAll-'+tableName" aria-expanded="false"
+                            [attr.aria-controls]="'collapse-getAll-'+tableName">
+                            <button class="btn btn-primary btn-request">Get</button>
+                            <span
+                                class="request-url-header">/GetAll/&#123;securityKey&#125;/&#123;tableName&#125;</span>
                         </div>
-                        <div class="input-group">
-                            <span class="input-group-text">tableName<span class="required-sign">*</span></span>
-                            <input [(ngModel)]="inputTableName" type="text" class="form-control" placeholder="tableName">
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-text">page</span>
-                            <input [(ngModel)]="inputPage" type="number" class="form-control" placeholder="page">
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-text">column</span>
-                            <input [(ngModel)]="inputPage" type="number" class="form-control" placeholder="count">
-                        </div>
-                        <button (click)="executeGetAll()" class="btn btn-primary btn-execute">
-                            @if (isLoading) {
-                            <div class="spinner-border spinner-border-sm" role="status">
-                                <span class="visually-hidden">Loading...</span>
+                    </h2>
+                    <div [id]="'collapse-getAll-'+tableName" class="accordion-collapse collapse"
+                        [attr.data-bs-parent]="'#accordion-'+tableName">
+                        <div class="accordion-body">
+                            <p>Paramaetrs:</p>
+                            <div class="input-group">
+                                <span class="input-group-text">securityKey<span class="required-sign">*</span></span>
+                                <input [(ngModel)]="inputSecurityKey[0]" type="text" class="form-control"
+                                    placeholder="securityKey">
                             </div>
-                            }
-                            @else {
-                            Execute
-                            }
-                        </button>
-                        <div class="responses-handler">
-                            <div id="response-handler">
-                                <!--Real Responses-->
+                            <div class="input-group">
+                                <span class="input-group-text">tableName<span class="required-sign">*</span></span>
+                                <input [(ngModel)]="inputTableName[0]" type="text" class="form-control"
+                                    placeholder="tableName">
                             </div>
-                            <hr>
-                            <p>Response scheme</p>
-                            <pre class="json-handler">
+                            <div class="input-group">
+                                <span class="input-group-text">page</span>
+                                <input [(ngModel)]="inputPage" type="number" class="form-control" placeholder="page">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-text">count</span>
+                                <input [(ngModel)]="inputCount" type="number" class="form-control" placeholder="count">
+                            </div>
+                            <button (click)="executeGetAll()" class="btn btn-primary btn-execute"
+                                [class.disabled]="isLoading">
+                                @if (isLoading) {
+                                <div class="spinner-border spinner-border-sm" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                }
+                                @else {
+                                Execute
+                                }
+                            </button>
+                            <div class="responses-handler">
+                                <div [id]="'response-handler-getAll-'+tableName">
+                                    <!--Real Responses-->
+                                </div>
+                                <hr>
+                                <p>Response scheme</p>
+                                <pre class="json-handler">
 [
   &#123;@for (column of columns; track $index) {
-    "{{column}}": "<span class="response-value">string</span>",}
+  "{{column}}": <span class="response-value">"string"</span>,}
   &#125;
 ]                           </pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 2-item -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <div class="accordion-button collapsed get-header" type="button" data-bs-toggle="collapse"
+                            [attr.data-bs-target]="'#collapse-getByAny-'+tableName" aria-expanded="false"
+                            [attr.aria-controls]="'collapse-getByAny-'+tableName">
+                            <button class="btn btn-primary btn-request">Get</button>
+                            <span
+                                class="request-url-header">/GetByAny/&#123;securityKey&#125;/&#123;tableName&#125;/&#123;columnName&#125;/&#123;columnValue&#125;</span>
+                        </div>
+                    </h2>
+                    <div [id]="'collapse-getByAny-'+tableName" class="accordion-collapse collapse"
+                        [attr.data-bs-parent]="'#accordion-'+tableName">
+                        <div class="accordion-body">
+                            <p>Paramaetrs:</p>
+                            <div class="input-group">
+                                <span class="input-group-text">securityKey<span class="required-sign">*</span></span>
+                                <input [(ngModel)]="inputSecurityKey[1]" type="text" class="form-control"
+                                    placeholder="securityKey">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-text">tableName<span class="required-sign">*</span></span>
+                                <input [(ngModel)]="inputTableName[1]" type="text" class="form-control"
+                                    placeholder="tableName">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-text">columnName<span class="required-sign">*</span></span>
+                                <input [(ngModel)]="inputColumnName[0]" type="text" class="form-control"
+                                    placeholder="columnName">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-text">columnValue</span>
+                                <input [(ngModel)]="inputColumnValue[0]" type="text" class="form-control"
+                                    placeholder="columnValue">
+                            </div>
+                            <button (click)="executeGetByAny()" class="btn btn-primary btn-execute"
+                                [class.disabled]="isLoading">
+                                @if (isLoading) {
+                                <div class="spinner-border spinner-border-sm" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                }
+                                @else {
+                                Execute
+                                }
+                            </button>
+                            <div class="responses-handler">
+                                <div [id]="'response-handler-getByAny-'+tableName">
+                                    <!--Real Responses-->
+                                </div>
+                                <hr>
+                                <p>Response scheme</p>
+                                <pre class="json-handler">
+&#123;@for (column of columns; track $index) {
+  "{{column}}": <span class="response-value">"string"</span>,}
+&#125;                  </pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 3-item -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <div class="accordion-button collapsed post-header" type="button" data-bs-toggle="collapse"
+                            [attr.data-bs-target]="'#collapse-create-'+tableName" aria-expanded="false"
+                            [attr.aria-controls]="'collapse-create-'+tableName">
+                            <button class="btn btn-success btn-request">Post</button>
+                            <span
+                                class="request-url-header">/Create/&#123;securityKey&#125;/&#123;tableName&#125;</span>
+                        </div>
+                    </h2>
+                    <div [id]="'collapse-create-'+tableName" class="accordion-collapse collapse"
+                        [attr.data-bs-parent]="'#accordion-'+tableName">
+                        <div class="accordion-body">
+                            <p>Paramaetrs:</p>
+                            <div class="input-group">
+                                <span class="input-group-text">securityKey<span class="required-sign">*</span></span>
+                                <input [(ngModel)]="inputSecurityKey[2]" type="text" class="form-control"
+                                    placeholder="securityKey">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-text">tableName<span class="required-sign">*</span></span>
+                                <input [(ngModel)]="inputTableName[2]" type="text" class="form-control"
+                                    placeholder="tableName">
+                            </div>
+                            <div>
+                                <textarea class="text-area text-area-post"
+                                    [(ngModel)]="textAreaRequestBody[0]"></textarea>
+                            </div>
+                            <button (click)="executeCreate()" class="btn btn-success btn-execute"
+                                [class.disabled]="isLoading">
+                                @if (isLoading) {
+                                <div class="spinner-border spinner-border-sm" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                }
+                                @else {
+                                Execute
+                                }
+                            </button>
+                            <div class="responses-handler">
+                                <div [id]="'response-handler-create-'+tableName">
+                                    <!--Real Responses-->
+                                </div>
+                                <hr>
+                                <p>Response scheme</p>
+                                <pre class="json-handler">
+&#123;
+  "isSuccess": <span class="response-value">true</span>,
+  "statusCode": <span class="response-value">0</span>,
+  "response": <span class="response-value">"string"</span>,
+&#125;                  </pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 4-item -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <div class="accordion-button collapsed put-header" type="button" data-bs-toggle="collapse"
+                            [attr.data-bs-target]="'#collapse-updateByAny-'+tableName" aria-expanded="false"
+                            [attr.aria-controls]="'collapse-updateByAny-'+tableName">
+                            <button class="btn btn-warning btn-request">Put</button>
+                            <span
+                                class="request-url-header">/Update/&#123;securityKey&#125;/&#123;tableName&#125;/&#123;columnName&#125;/&#123;columnValue&#125;</span>
+                        </div>
+                    </h2>
+                    <div [id]="'collapse-updateByAny-'+tableName" class="accordion-collapse collapse"
+                        [attr.data-bs-parent]="'#accordion-'+tableName">
+                        <div class="accordion-body">
+                            <p>Paramaetrs:</p>
+                            <div class="input-group">
+                                <span class="input-group-text">securityKey<span class="required-sign">*</span></span>
+                                <input [(ngModel)]="inputSecurityKey[3]" type="text" class="form-control"
+                                    placeholder="securityKey">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-text">tableName<span class="required-sign">*</span></span>
+                                <input [(ngModel)]="inputTableName[3]" type="text" class="form-control"
+                                    placeholder="tableName">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-text">columnName<span class="required-sign">*</span></span>
+                                <input [(ngModel)]="inputColumnName[1]" type="text" class="form-control"
+                                    placeholder="columnName">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-text">columnValue</span>
+                                <input [(ngModel)]="inputColumnValue[1]" type="text" class="form-control"
+                                    placeholder="columnValue">
+                            </div>
+                            <div>
+                                <textarea class="text-area text-area-update"
+                                    [(ngModel)]="textAreaRequestBody[1]"></textarea>
+                            </div>
+                            <button (click)="executeUpdateByAny()" class="btn btn-warning btn-execute"
+                                [class.disabled]="isLoading">
+                                @if (isLoading) {
+                                <div class="spinner-border spinner-border-sm" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                }
+                                @else {
+                                Execute
+                                }
+                            </button>
+                            <div class="responses-handler">
+                                <div [id]="'response-handler-updateByAny-'+tableName">
+                                    <!--Real Responses-->
+                                </div>
+                                <hr>
+                                <p>Response scheme</p>
+                                <pre class="json-handler">
+&#123;
+  "isSuccess": <span class="response-value">true</span>,
+  "statusCode": <span class="response-value">0</span>,
+  "response": <span class="response-value">"string"</span>,
+&#125;                  </pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 5-item -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <div class="accordion-button collapsed delete-header" type="button" data-bs-toggle="collapse"
+                            [attr.data-bs-target]="'#collapse-deleteByAny-'+tableName" aria-expanded="false"
+                            [attr.aria-controls]="'collapse-deleteByAny-'+tableName">
+                            <button class="btn btn-danger btn-request">Put</button>
+                            <span
+                                class="request-url-header">/DeleteByAny/&#123;securityKey&#125;/&#123;tableName&#125;/&#123;columnName&#125;/&#123;columnValue&#125;</span>
+                        </div>
+                    </h2>
+                    <div [id]="'collapse-deleteByAny-'+tableName" class="accordion-collapse collapse"
+                        [attr.data-bs-parent]="'#accordion-'+tableName">
+                        <div class="accordion-body">
+                            <p>Paramaetrs:</p>
+                            <div class="input-group">
+                                <span class="input-group-text">securityKey<span class="required-sign">*</span></span>
+                                <input [(ngModel)]="inputSecurityKey[4]" type="text" class="form-control"
+                                    placeholder="securityKey">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-text">tableName<span class="required-sign">*</span></span>
+                                <input [(ngModel)]="inputTableName[4]" type="text" class="form-control"
+                                    placeholder="tableName">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-text">columnName<span class="required-sign">*</span></span>
+                                <input [(ngModel)]="inputColumnName[2]" type="text" class="form-control"
+                                    placeholder="columnName">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-text">columnValue</span>
+                                <input [(ngModel)]="inputColumnValue[2]" type="text" class="form-control"
+                                    placeholder="columnValue">
+                            </div>
+                            <button (click)="executeDeleteByAny()" class="btn btn-danger btn-execute"
+                                [class.disabled]="isLoading">
+                                @if (isLoading) {
+                                <div class="spinner-border spinner-border-sm" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                }
+                                @else {
+                                Execute
+                                }
+                            </button>
+                            <div class="responses-handler">
+                                <div [id]="'response-handler-deleteByAny-'+tableName">
+                                    <!--Real Responses-->
+                                </div>
+                                <hr>
+                                <p>Response scheme</p>
+                                <pre class="json-handler">
+&#123;
+  "isSuccess": <span class="response-value">true</span>,
+  "statusCode": <span class="response-value">0</span>,
+  "response": <span class="response-value">"string"</span>,
+&#125;                  </pre>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="table-manager-btns-handler">
+            <div class="inner-table-manager-btns-handler-left">
+                <button class="btn btn-outline-warning table-manager-btn" data-bs-toggle="modal"
+                    [attr.data-bs-target]="'#truncate-modal-'+tableName">Truncate</button>
+            </div>
+            <div class="inner-table-manager-btns-handler-right">
+                <button class="btn btn-outline-danger table-manager-btn" data-bs-toggle="modal"
+                    [attr.data-bs-target]="'#delete-modal-'+tableName">Delete</button>
+            </div>
+        </div>
     </div>
 </div>
+
+<div class="modal fade" [id]="'truncate-modal-'+tableName" tabindex="-1" data-bs-theme="dark">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Truncate</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure want to truncate this table?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button (click)="truncateTableByUserId()" type="button" class="btn btn-warning"
+                    data-bs-dismiss="modal">Truncate</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" [id]="'delete-modal-'+tableName" tabindex="-1" data-bs-theme="dark">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Delete</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure want to permanatly delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button (click)="deleteTable()" type="button" class="btn btn-danger"
+                    data-bs-dismiss="modal">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+}
+@else {}
