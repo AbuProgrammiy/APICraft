@@ -11,6 +11,7 @@ import { TableService } from '../../services/table/table.service';
   styleUrl: './flexible-table.component.scss'
 })
 export class FlexibleTableComponent {
+  @Input() lang!:string
   @Input() tableName!: string;
   @Input() columns!: string[];
 

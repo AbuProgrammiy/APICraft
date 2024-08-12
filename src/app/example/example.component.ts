@@ -10,4 +10,5 @@ tableName="Car"
 tableName2="Book"
 columns=["brand","name","price"]
 columns2=["name","author","price"]
+lang="Uzbek"
 }

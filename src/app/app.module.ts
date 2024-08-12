@@ -27,6 +27,7 @@ import { TableNameInputComponent } from './secondary-components/table-name-input
 import { CoulmInputsComponent } from './secondary-components/coulm-inputs/coulm-inputs.component';
 import { FlexibleTableComponent } from './components/flexible-table/flexible-table.component';
 import { ExampleComponent } from './example/example.component';
+import { ShowFlexibleTableResultComponent } from './secondary-components/show-flexible-table-result/show-flexible-table-result.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { ExampleComponent } from './example/example.component';
     CoulmInputsComponent,
     FlexibleTableComponent,
     ExampleComponent,
+    ShowFlexibleTableResultComponent,
   ],
   imports: [
     BrowserModule,

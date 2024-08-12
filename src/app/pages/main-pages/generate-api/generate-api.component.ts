@@ -10,6 +10,7 @@ export class GenerateApiComponent {
 
   currentMode: string = "choosingMode"
   tableName!: string
+  columns!:string[]
 
   changeLang(lang: string) {
     this.lang = lang
@@ -26,5 +27,9 @@ export class GenerateApiComponent {
   getTableName(name: any) {
     this.tableName = name
     this.currentMode = "coulmnInputs"
+  }
+
+  getColumns(columns:any){
+    this.columns=columns
   }
 }

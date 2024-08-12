@@ -13,11 +13,13 @@ export class CoulmInputsComponent {
   @Input() lang!: string
   @Input() tableName!: string
   @Output() changeCurrentMode = new EventEmitter();
+  @Output() sendColumns = new EventEmitter();
 
   constructor(private renderer: Renderer2, private messageService: MessageService, private tableService: TableService, private dataStorageService: DataStorageService) { }
 
   isGenerating: boolean = false
   count: number = 2
+  columns:string[]=new Array()
 
   table = {
     "userId": "",
@@ -70,6 +72,17 @@ export class CoulmInputsComponent {
     this.count = 1
   }
 
+  extractColumns(){
+    const keys=Object.keys(this.dataStorage)
+    for(let i=0;i<keys.length;i++){
+      if(keys[i].includes("column")){
+        this.columns.push(this.dataStorage[keys[i]])
+      }
+    }
+
+    this.sendColumns.emit(this.columns)
+  }
+
   generateAPI() {
     if (this.count == 1) {
       this.messageService.add({ severity: 'contrast', summary: 'Please', detail: 'Add column at least one!' });
@@ -105,6 +118,7 @@ export class CoulmInputsComponent {
             next: (response) => {
               if (response.isSuccess == true) {
                 this.messageService.add({ severity: 'contrast', summary: this.lang == "Uzbek" ? "Muvaffaqiyat" : this.lang == "English" ? "Success" : "", detail: this.lang == "Uzbek" ? "API muvaffaqiyatli ishga tushirildi!" : "API successfully generated!" });
+                this.extractColumns()
                 this.changeCurrentMode.emit("showResult")
               }
               else {

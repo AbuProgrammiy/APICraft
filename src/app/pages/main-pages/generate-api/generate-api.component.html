@@ -7,10 +7,10 @@
         <table-name-input [lang]="lang!" (changeCurrentMode)="changeCurrentMode($event)" (sendTableName)="getTableName($event)"/>
     }
     @else if (currentMode=="coulmnInputs"){
-        <coulm-inputs [lang]="lang!" [tableName]="tableName!" (changeCurrentMode)="changeCurrentMode($event)"/>
+        <coulm-inputs [lang]="lang!" [tableName]="tableName!" (changeCurrentMode)="changeCurrentMode($event)" (sendColumns)="getColumns($event)"/>
     }
     @else if (currentMode=="showResult") {
-        <flexible-table/>
+        <show-flexible-table-result [lang]="lang!" [tableName]="tableName" [columns]="columns"/>
     }
 </div>
 
