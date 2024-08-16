@@ -11,7 +11,7 @@ import { TableService } from '../../services/table/table.service';
   styleUrl: './flexible-table.component.scss'
 })
 export class FlexibleTableComponent {
-  @Input() lang!:string
+  @Input() lang!: string
   @Input() tableName!: string;
   @Input() columns!: string[];
 
@@ -129,7 +129,7 @@ export class FlexibleTableComponent {
     })
   }
 
-  truncateTableByUserId(){
+  truncateTableByUserId() {
     this.tableService.truncateTableByUserId(this.userId, this.tableName).subscribe({
       next: (response) => {
         if (response.isSuccess == true) {
@@ -150,7 +150,7 @@ export class FlexibleTableComponent {
       next: (response) => {
         if (response.isSuccess == true) {
           this.messageService.add({ severity: 'contrast', summary: 'Success', detail: response.response });
-          this.isDeleted=true
+          this.isDeleted = true
         }
         else {
           this.messageService.add({ severity: 'contrast', summary: 'Warning', detail: response.response });
@@ -237,16 +237,16 @@ export class FlexibleTableComponent {
         requestURL += `GetAll/${this.inputSecurityKey[0]}/${this.inputTableName[0]}${this.inputPage != undefined && this.inputPage != null && this.inputCount != undefined && this.inputCount != null ? `?page=${this.inputPage}&count=${this.inputCount}` : ""}`
         break
       case "getByAny":
-        requestURL += `GetByAny/${this.inputSecurityKey[1]}/${this.inputTableName[1]}/${this.inputColumnName[0]}${this.inputColumnValue[0]!=undefined&&this.inputColumnValue[0]!=null?`/${this.inputColumnValue[0]}`:""}`
+        requestURL += `GetByAny/${this.inputSecurityKey[1]}/${this.inputTableName[1]}/${this.inputColumnName[0]}${this.inputColumnValue[0] != undefined && this.inputColumnValue[0] != null ? `/${this.inputColumnValue[0]}` : ""}`
         break
       case "create":
         requestURL += `Create/${this.inputSecurityKey[2]}/${this.inputTableName[2]}`
         break
       case "updateByAny":
-        requestURL += `UpdateByAny/${this.inputSecurityKey[3]}/${this.inputTableName[3]}/${this.inputColumnName[1]}${this.inputColumnValue[1]!=undefined&&this.inputColumnValue[1]!=null?`/${this.inputColumnValue[1]}`:""}`
+        requestURL += `UpdateByAny/${this.inputSecurityKey[3]}/${this.inputTableName[3]}/${this.inputColumnName[1]}${this.inputColumnValue[1] != undefined && this.inputColumnValue[1] != null ? `/${this.inputColumnValue[1]}` : ""}`
         break
       case "deleteByAny":
-        requestURL += `DeleteByAny/${this.inputSecurityKey[4]}/${this.inputTableName[4]}/${this.inputColumnName[2]}${this.inputColumnValue[2]!=undefined&&this.inputColumnValue[2]!=null?`/${this.inputColumnValue[2]}`:""}`
+        requestURL += `DeleteByAny/${this.inputSecurityKey[4]}/${this.inputTableName[4]}/${this.inputColumnName[2]}${this.inputColumnValue[2] != undefined && this.inputColumnValue[2] != null ? `/${this.inputColumnValue[2]}` : ""}`
         break
     }
 

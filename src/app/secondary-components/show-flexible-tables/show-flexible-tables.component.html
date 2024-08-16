@@ -1,0 +1,25 @@
+<div class="main">
+    <p (click)="back()" class="back-arrow">&#8592;</p>
+    <div class="content-handler">
+        <h3 class="main-header">
+            @if (lang=="Uzbek") {
+            Moslashuvchan turidagi APIlaringiz
+            }
+            @else if (lang=="English") {
+            Your Flexible type APIs
+            }
+        </h3>
+    </div>
+    @if (isLoading==true) {
+    <div class="spinner-handler">
+        <div class="spinner spinner-border text-light" data-bs-theme="dark" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    }
+    @else {
+        @for (tableName of tableNames; track $index) {
+            <flexible-table [lang]="lang!" [tableName]="tableName" [columns]="tables[tableName]"/>
+        }
+    }
+</div>

@@ -1,0 +1,30 @@
+<div class="main">
+    <app-navbar />
+    <div class="content-handler">
+        <div class="profile-handler" data-bs-theme="dark">
+            <div class="input-group">
+                <span class="input-group-text">Email</span>
+                <input type="text" class="form-control" [disabled]="isEditing==false" placeholder="Email">
+            </div>
+            <div class="input-group">
+                <span class="input-group-text">Password</span>
+                <input type="text" class="form-control" [disabled]="isEditing==false" placeholder="Password">
+            </div>
+            <div class="input-group">
+                <span class="input-group-text">SecurityKey</span>
+                <input type="text" class="form-control" [disabled]="isEditing==false" placeholder="SecrityKey">
+            </div>
+            <div class="managment-btn-handler">
+                <div class="managment-btn-handler-left">
+                    <button class="btn btn-primary managment-btn">Log out</button>
+                </div>
+                <div class="managment-btn-handler-center">
+                    <button class="btn btn-warning managment-btn">Edit</button>
+                </div>
+                <div class="managment-btn-handler-right">
+                    <button class="btn btn-danger managment-btn">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

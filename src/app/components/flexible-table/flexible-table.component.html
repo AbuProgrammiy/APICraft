@@ -1,4 +1,5 @@
 @if (isDeleted==false) {
+<div class="space-100"></div>
 <div class="content-handler">
     <div>
         <div class="inner-main">
@@ -352,28 +353,27 @@
             </div>
             <div class="modal-body">
                 @if (lang=="Uzbek") {
-                    Tableni tozalashga rozimisiz?
+                Tableni tozalashga rozimisiz?
                 }
                 @else if (lang=="English") {
-                    Are you sure want to truncate this table?
+                Are you sure want to truncate this table?
                 }
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                     @if (lang=="Uzbek") {
-                        Bekor qilish
+                    Bekor qilish
                     }
                     @else if (lang=="English") {
-                        Cancel
+                    Cancel
                     }
                 </button>
-                <button (click)="truncateTableByUserId()" type="button" class="btn btn-warning"
-                    data-bs-dismiss="modal">
+                <button (click)="truncateTableByUserId()" type="button" class="btn btn-warning" data-bs-dismiss="modal">
                     @if (lang=="Uzbek") {
-                        Tozalash
+                    Tozalash
                     }
                     @else if (lang=="English") {
-                        Truncate
+                    Truncate
                     }
                 </button>
             </div>
@@ -390,33 +390,33 @@
             </div>
             <div class="modal-body">
                 @if (lang=="Uzbek") {
-                    O'chirib yuborishga rozimisiz?
+                O'chirib yuborishga rozimisiz?
                 }
                 @else if (lang=="English") {
-                    Are you sure want to permanatly delete?
+                Are you sure want to permanatly delete?
                 }
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                     @if (lang=="Uzbek") {
-                        Bekor qilish
+                    Bekor qilish
                     }
                     @else if (lang=="English") {
-                        Cancel
+                    Cancel
                     }
                 </button>
-                <button (click)="deleteTable()" type="button" class="btn btn-danger"
-                    data-bs-dismiss="modal">
+                <button (click)="deleteTable()" type="button" class="btn btn-danger" data-bs-dismiss="modal">
                     @if (lang=="Uzbek") {
-                        O'chirish
+                    O'chirish
                     }
                     @else if (lang=="English") {
-                        Delete
+                    Delete
                     }
                 </button>
             </div>
         </div>
     </div>
 </div>
+<div class="space-100"></div>
 }
 @else {}

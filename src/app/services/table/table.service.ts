@@ -14,8 +14,12 @@ export class TableService {
     return this.httpClient.get(`${environment.baseUrl}Table/IsTableNameExistsByUserId/${userId}/${tableName}`)
   }
 
+  getTableNamesByUserId(userId:string):Observable<any>{
+    return this.httpClient.get(`${environment.baseUrl}Table/GetTableNamesByUserId/${userId}`)
+  }
+
   create(body: any): Observable<any> {
-    return this.httpClient.post(environment.baseUrl + "Table/Create", body)
+    return this.httpClient.post(`${environment.baseUrl}Table/Create`, body)
   }
 
   truncateTableByUserId(userId:string,tableName:string):Observable<any>{

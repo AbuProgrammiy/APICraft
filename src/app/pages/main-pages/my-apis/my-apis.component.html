@@ -1,1 +1,11 @@
-<p>my-apis works!</p>
+<div class="main">
+    <app-navbar (changeLang)="changeLang($event)"/>
+    @if (currentMode=="choosingType") {
+        <my-apis-types [lang]="lang!" (selectAPIType)="selectAPIType($event)"/>
+    }
+    @else if (currentMode=="showFlexibleTables") {
+        <show-flexible-tables [lang]="lang!" (changeCurrentMode)="changeCurrentMode($event)"/>
+    }
+</div>
+
+<p-toast/>

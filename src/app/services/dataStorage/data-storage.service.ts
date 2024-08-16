@@ -10,8 +10,8 @@ export class DataStorageService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getColumnsByTableId(id:string):Observable<any>{
-    return this.httpClient.get(environment.baseUrl+"DataStorage/GetColumnsByTableId/"+id)
+  getColumnsByTableName(userId:string,tableName:string):Observable<any>{
+    return this.httpClient.get(`${environment.baseUrl}DataStorage/GetColumnsByTableName/${userId}/${tableName}`)
   }
 
   create(body: any): Observable<any> {

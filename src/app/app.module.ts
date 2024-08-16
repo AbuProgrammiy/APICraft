@@ -28,6 +28,9 @@ import { CoulmInputsComponent } from './secondary-components/coulm-inputs/coulm-
 import { FlexibleTableComponent } from './components/flexible-table/flexible-table.component';
 import { ExampleComponent } from './example/example.component';
 import { ShowFlexibleTableResultComponent } from './secondary-components/show-flexible-table-result/show-flexible-table-result.component';
+import { MyApisTypesComponent } from './secondary-components/my-apis-types/my-apis-types.component';
+import { ShowFlexibleTablesComponent } from './secondary-components/show-flexible-tables/show-flexible-tables.component';
+import { ProfileComponent } from './pages/main-pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +48,9 @@ import { ShowFlexibleTableResultComponent } from './secondary-components/show-fl
     FlexibleTableComponent,
     ExampleComponent,
     ShowFlexibleTableResultComponent,
+    MyApisTypesComponent,
+    ShowFlexibleTablesComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

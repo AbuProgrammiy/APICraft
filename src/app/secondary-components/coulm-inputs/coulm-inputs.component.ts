@@ -112,7 +112,6 @@ export class CoulmInputsComponent {
       next: (response) => {
         if (response.isSuccess == true) {
           this.dataStorage["tableId"] = response.response;
-          console.log(this.dataStorage);
 
           this.dataStorageService.create(this.dataStorage).subscribe({
             next: (response) => {
