@@ -202,7 +202,7 @@ export class FlexibleTableComponent {
           jsonHandler.appendChild(this.renderer.createText(`    "${keys[j]}":`))
           const value = this.renderer.createElement("span")
           value.className = "response-value"
-          value.innerHTML = ` "${values[j]}"${j + 1 != keys.length ? "," : ""}\n`
+          value.innerHTML = ` ${values[j]!=null?'"':""}${values[j]}${values[j]!=null?'"':""}${j + 1 != keys.length ? "," : ""}\n`
           jsonHandler.appendChild(value)
         }
 

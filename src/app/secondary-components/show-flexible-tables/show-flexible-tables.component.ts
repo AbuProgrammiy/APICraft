@@ -1,6 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { TableService } from '../../services/table/table.service';
-import { DataStorageService } from '../../services/dataStorage/data-storage.service';
 import { jwtDecode } from 'jwt-decode';
 import { MessageService } from 'primeng/api';
 
@@ -13,41 +12,30 @@ export class ShowFlexibleTablesComponent {
   @Input() lang!: string
   @Output() changeCurrentMode = new EventEmitter()
 
-  constructor(private tableService:TableService,private dataStorageService:DataStorageService,private messageService: MessageService){
-    this.getTablaes()
+  constructor(private tableService:TableService,private messageService: MessageService){
+    this.getTables()
   }
 
   isLoading:boolean=true
   tableNames!:string[]
-  tables: { [key: string]: any }={}
+  tables: { [key: string]: string[] }={}
 
   back() {
     this.changeCurrentMode.emit("choosingType")
   }
 
-  getTablaes(){
+  getTables(){
     const userId=(jwtDecode(localStorage.getItem("accessToken")!)as any).Id
-    let columns:string[]
-
-    this.tableService.getTableNamesByUserId(userId).subscribe({
+    
+    this.tableService.getTablesByUserId(userId).subscribe({
       next:(response)=>{
-        this.tableNames=response
+        this.tableNames=Object.keys(response)
 
-        for(let i=0;i<this.tableNames.length;i++){
-          this.dataStorageService.getColumnsByTableName(userId,this.tableNames[i]).subscribe({
-            next:(response)=>{
-              columns=response
-              this.tables[`${this.tableNames[i]}`]=columns
-
-              if(i==this.tableNames.length-1){
-                this.isLoading=false
-              }
-            },
-            error:(err)=>{
-              this.messageService.add({ severity: 'contrast', summary: 'Error', detail: 'Something went wrong!' });
-            }
-          })
+        for(let i=0; i<this.tableNames.length;i++){
+          this.tables[this.tableNames[i]]=response[this.tableNames[i]]
         }
+
+        this.isLoading=false
       },
       error:(err)=>{
         this.messageService.add({ severity: 'contrast', summary: 'Error', detail: 'Something went wrong!' });

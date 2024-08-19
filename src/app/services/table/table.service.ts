@@ -14,8 +14,8 @@ export class TableService {
     return this.httpClient.get(`${environment.baseUrl}Table/IsTableNameExistsByUserId/${userId}/${tableName}`)
   }
 
-  getTableNamesByUserId(userId:string):Observable<any>{
-    return this.httpClient.get(`${environment.baseUrl}Table/GetTableNamesByUserId/${userId}`)
+  getTablesByUserId(userId:string):Observable<any>{
+    return this.httpClient.get(`${environment.baseUrl}Table/GetTablesByUserId/${userId}`)
   }
 
   create(body: any): Observable<any> {

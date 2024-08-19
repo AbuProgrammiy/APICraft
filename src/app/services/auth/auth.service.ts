@@ -25,4 +25,8 @@ export class AuthService {
   resetPassword(body:any):Observable<any>{
     return this.httpClient.post(environment.baseUrl+"User/ResetPassword",body)
   }
+
+  updateEmail(body:any):Observable<any>{
+    return this.httpClient.patch(environment.baseUrl+"User/UpdateEmail",body)
+  }
 }

@@ -13,7 +13,7 @@
 }
 
 .profile-handler{
-    width: 600px;
+    width: 700px;
     padding: 50px;
     border-radius: 10px;
     background-color: rgb(33,37,41);
@@ -24,8 +24,8 @@
     margin-bottom: 20px;
 }
 
-.input-group-text{
-    min-width: 100px;
+.profil-input-sign{
+    min-width: 110px;
 }
 
 .managment-btn-handler{
@@ -34,21 +34,23 @@
 }
 
 .managment-btn-handler-left{
-    width: 33.3%;
-}
-
-.managment-btn-handler-center{
-    width: 33.3%;
-    display: flex;
-    justify-content: center;
+    width: 50%;
 }
 
 .managment-btn-handler-right{
-    width: 33.3%;
+    width: 50%;
     display: flex;
     justify-content: end;
 }
 
 .managment-btn{
     width: 100px;
+}
+
+.modal-content{
+    color: white;
+}
+
+.invisable{
+    display: none;
 }
