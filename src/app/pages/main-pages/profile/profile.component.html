@@ -123,6 +123,7 @@
                     </span>
                     <input type="text" class="form-control" [(ngModel)]="sentPassword">
                   </div>
+                  <p id="email-danger-text" class="danger-text"></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
@@ -133,15 +134,22 @@
                     Cancel
                     }
                 </button>
-                <button type="button" class="btn btn-success">
-                    @if (lang=="Uzbek") {
-                    Tasdiqlash
+                <button (click)="updateEmail()" [class.disabled]="isEmailConfirming" type="button" class="btn btn-success">
+                    @if (isEmailConfirming==true) {
+                        <div class="spinner-border spinner-border-sm" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
                     }
-                    @else if (lang=="English") {
-                    Confirm
+                    @else {
+                        @if (lang=="Uzbek") {
+                        Tasdiqlash
+                        }
+                        @else if (lang=="English") {
+                        Confirm
+                        }
                     }
                 </button>
-                <button id="dismiss-edit-email-model" data-bs-dismiss="modal"></button>
+                <button id="dismiss-edit-email-model" class="invisable" data-bs-dismiss="modal"></button>
             </div>
         </div>
     </div>
