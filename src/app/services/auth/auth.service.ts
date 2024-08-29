@@ -29,4 +29,16 @@ export class AuthService {
   updateEmail(body:any):Observable<any>{
     return this.httpClient.patch(environment.baseUrl+"User/UpdateEmail",body)
   }
+
+  updatePassword(body:any):Observable<any>{
+    return this.httpClient.patch(environment.baseUrl+"User/UpdatePassword",body)
+  }
+  
+  updateSecurityKey(body:any):Observable<any>{
+    return this.httpClient.patch(environment.baseUrl+"User/UpdateSecurityKey",body)
+  }
+
+  deleteUser(userId:string):Observable<any>{
+    return this.httpClient.delete(`${environment.baseUrl}User/Delete/${userId}`)
+  }
 }

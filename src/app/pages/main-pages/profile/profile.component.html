@@ -4,30 +4,33 @@
         <div class="profile-handler" data-bs-theme="dark">
             <div class="input-group">
                 <span class="input-group-text profil-input-sign">Email</span>
-                <input type="text" class="form-control" [disabled]="isEmailEditing==false||isEmailLoading==true" [(ngModel)]="email">
-                <button class="btn" [ngClass]="{'btn-warning':isEmailEditing==false, 'btn-success':isEmailEditing==true, 'disabled':email==''||isEmailLoading==true}" (click)="editEmail()">
+                <input type="text" class="form-control" [disabled]="isEmailEditing==false||isEmailLoading==true"
+                    [(ngModel)]="email">
+                <button class="btn"
+                    [ngClass]="{'btn-warning':isEmailEditing==false, 'btn-success':isEmailEditing==true, 'disabled':email==''||isEmailLoading==true}"
+                    (click)="editEmail()">
                     @if (isEmailEditing==true) {
-                        @if (isEmailLoading==true) {
-                            <div class="spinner-border spinner-border-sm" role="status">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
-                        }
-                        @else {
-                            @if (lang=="Uzbek") {
-                                Tasdiqlash
-                            }
-                            @else if (lang=="English") {
-                                Submit
-                            }
-                        }
+                    @if (isEmailLoading==true) {
+                    <div class="spinner-border spinner-border-sm" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
                     }
                     @else {
-                        @if (lang=="Uzbek") {
-                        Tahrirlash
-                        }
-                        @else if (lang=="English") {
-                        Edit
-                        }
+                    @if (lang=="Uzbek") {
+                    Tasdiqlash
+                    }
+                    @else if (lang=="English") {
+                    Submit
+                    }
+                    }
+                    }
+                    @else {
+                    @if (lang=="Uzbek") {
+                    Tahrirlash
+                    }
+                    @else if (lang=="English") {
+                    Edit
+                    }
                     }
                 </button>
             </div>
@@ -41,7 +44,7 @@
                     }
                 </span>
                 <input type="password" class="form-control" disabled value="password is not visible)">
-                <button class="btn btn-warning">
+                <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit-password-modal">
                     @if (lang=="Uzbek") {
                     Tahrirlash
                     }
@@ -52,19 +55,38 @@
             </div>
             <div class="input-group">
                 <span class="input-group-text profil-input-sign">SecurityKey</span>
-                <input type="text" class="form-control" [disabled]="isSecurityKeyEditing==false" [value]="securityKey">
-                <button class="btn btn-warning">
+                <input type="text" class="form-control" [disabled]="isSecurityKeyEditing==false||isSecurityKeyLoading==true" [(ngModel)]="securityKey">
+                <button class="btn"
+                    [ngClass]="{'btn-warning':isSecurityKeyEditing==false, 'btn-success':isSecurityKeyEditing==true, 'disabled':securityKey==''||isSecurityKeyLoading==true}"
+                    (click)="editSecurityKey()">
+                    @if (isSecurityKeyEditing==true) {
+                    @if (isSecurityKeyLoading==true) {
+                    <div class="spinner-border spinner-border-sm" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    }
+                    @else {
+                    @if (lang=="Uzbek") {
+                    Tasdiqlash
+                    }
+                    @else if (lang=="English") {
+                    Submit
+                    }
+                    }
+                    }
+                    @else {
                     @if (lang=="Uzbek") {
                     Tahrirlash
                     }
                     @else if (lang=="English") {
                     Edit
                     }
+                    }
                 </button>
             </div>
             <div class="managment-btn-handler">
                 <div class="managment-btn-handler-left">
-                    <button class="btn btn-primary managment-btn">
+                    <button (click)="logOut()" class="btn btn-primary managment-btn">
                         @if (lang=="Uzbek") {
                         Chiqish
                         }
@@ -73,13 +95,23 @@
                         }
                     </button>
                 </div>
-                <div class="managment-btn-handler-right">
-                    <button class="btn btn-danger managment-btn">
+                <div class="managment-btn-handler-center">
+                    <button (click)="cancel()" [class.invisable]="isEmailEditing==false&&isSecurityKeyEditing==false" class="btn btn-outline-light managment-btn">
                         @if (lang=="Uzbek") {
-                            O'chirish
+                        Bekor qilish
                         }
                         @else if (lang=="English") {
-                            Delete
+                        Cancel
+                        }
+                    </button>
+                </div>
+                <div class="managment-btn-handler-right">
+                    <button class="btn btn-danger managment-btn" data-bs-toggle="modal" data-bs-target="#delete-user-modal">
+                        @if (lang=="Uzbek") {
+                        O'chirish
+                        }
+                        @else if (lang=="English") {
+                        Delete
                         }
                     </button>
                 </div>
@@ -88,19 +120,20 @@
     </div>
 </div>
 
-<button id="toggle-edit-email-modal" data-bs-toggle="modal" class="invisable" data-bs-target="#edit-email-modal"></button>
-<button id="toggle-edit-password-modal" data-bs-toggle="modal" class="invisable" data-bs-target="#edit-email-modal"></button>
+<button id="toggle-edit-email-modal" data-bs-toggle="modal" class="invisable"
+    data-bs-target="#edit-email-modal"></button>
 
-<div class="modal fade" id="edit-email-modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" data-bs-theme="dark">
+<div class="modal fade" id="edit-email-modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+    data-bs-theme="dark">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5">
                     @if (lang=="Uzbek") {
-                        Emailni o'zgartirish
+                    Emailni o'zgartirish
                     }
                     @else if (lang=="English") {
-                        Update email
+                    Update email
                     }
                 </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -113,17 +146,17 @@
                 Confirm your new email:
                 }
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">
+                    <span class="input-group-text">
                         @if (lang=="Uzbek") {
-                            kod:
+                        kod:
                         }
                         @else if (lang=="English") {
-                            code:
+                        code:
                         }
                     </span>
                     <input type="text" class="form-control" [(ngModel)]="sentPassword">
-                  </div>
-                  <p id="email-danger-text" class="danger-text"></p>
+                </div>
+                <p id="email-danger-text" class="danger-text"></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
@@ -134,19 +167,20 @@
                     Cancel
                     }
                 </button>
-                <button (click)="updateEmail()" [class.disabled]="isEmailConfirming" type="button" class="btn btn-success">
+                <button (click)="updateEmail()" [class.disabled]="isEmailConfirming" type="button"
+                    class="btn btn-success">
                     @if (isEmailConfirming==true) {
-                        <div class="spinner-border spinner-border-sm" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                        </div>
+                    <div class="spinner-border spinner-border-sm" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
                     }
                     @else {
-                        @if (lang=="Uzbek") {
-                        Tasdiqlash
-                        }
-                        @else if (lang=="English") {
-                        Confirm
-                        }
+                    @if (lang=="Uzbek") {
+                    Tasdiqlash
+                    }
+                    @else if (lang=="English") {
+                    Confirm
+                    }
                     }
                 </button>
                 <button id="dismiss-edit-email-model" class="invisable" data-bs-dismiss="modal"></button>
@@ -155,4 +189,129 @@
     </div>
 </div>
 
-<p-toast/>
+<div class="modal fade" id="edit-password-modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+    data-bs-theme="dark">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">
+                    @if (lang=="Uzbek") {
+                    Parolni o'zgartirish
+                    }
+                    @else if (lang=="English") {
+                    Update password
+                    }
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <span class="input-group-text edit-password-input-sign">
+                        @if (lang=="Uzbek") {
+                        joriy parol:
+                        }
+                        @else if (lang=="English") {
+                        current password:
+                        }
+                    </span>
+                    <input type="text" class="form-control" [(ngModel)]="currentPassword">
+                </div>
+                <p id="password-danger-text" class="danger-text"></p>
+                <div class="input-group mb-3">
+                    <span class="input-group-text edit-password-input-sign">
+                        @if (lang=="Uzbek") {
+                        yangi parol:
+                        }
+                        @else if (lang=="English") {
+                        new password:
+                        }
+                    </span>
+                    <input type="text" class="form-control" [(ngModel)]="newPassword">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    @if (lang=="Uzbek") {
+                    Bekor qilish
+                    }
+                    @else if (lang=="English") {
+                    Cancel
+                    }
+                </button>
+                <button (click)="updatePassword()" [class.disabled]="isPasswordLoading" type="button"
+                    class="btn btn-success">
+                    @if (isPasswordLoading==true) {
+                    <div class="spinner-border spinner-border-sm" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    }
+                    @else {
+                    @if (lang=="Uzbek") {
+                    Yuborish
+                    }
+                    @else if (lang=="English") {
+                    Submit
+                    }
+                    }
+                </button>
+                <button id="dismiss-edit-password-model" class="invisable" data-bs-dismiss="modal"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="delete-user-modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+    data-bs-theme="dark">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">
+                    @if (lang=="Uzbek") {
+                    Delete account
+                    }
+                    @else if (lang=="English") {
+                    Akkauntni o'chirish
+                    }
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    @if (lang=="Uzbek") {
+                        Rostan ham akkountingiz o'chirmoqchimisiz?
+                    }
+                    @else if (lang=="English") {
+                        Are you sure to delete youre account?
+                    }
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    @if (lang=="Uzbek") {
+                    Bekor qilish
+                    }
+                    @else if (lang=="English") {
+                    Cancel
+                    }
+                </button>
+                <button (click)="deleteUserAccount()" [class.disabled]="isPasswordLoading" type="button"
+                    class="btn btn-danger">
+                    @if (isAccountLoading==true) {
+                    <div class="spinner-border spinner-border-sm" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    }
+                    @else {
+                    @if (lang=="Uzbek") {
+                    O'chirish
+                    }
+                    @else if (lang=="English") {
+                    Delete
+                    }
+                    }
+                </button>
+                <button id="dismiss-delete-user-model" class="invisable" data-bs-dismiss="modal"></button>
+            </div>
+        </div>
+    </div>
+</div>

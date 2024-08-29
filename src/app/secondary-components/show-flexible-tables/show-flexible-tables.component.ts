@@ -39,6 +39,7 @@ export class ShowFlexibleTablesComponent {
       },
       error:(err)=>{
         this.messageService.add({ severity: 'contrast', summary: 'Error', detail: 'Something went wrong!' });
+        this.isLoading=false
       }
     })
   }

@@ -34,11 +34,17 @@
 }
 
 .managment-btn-handler-left{
-    width: 50%;
+    width: 33.3%;
+}
+
+.managment-btn-handler-center{
+    width: 33.3%;
+    display: flex;
+    justify-content: center;
 }
 
 .managment-btn-handler-right{
-    width: 50%;
+    width: 33.3%;
     display: flex;
     justify-content: end;
 }
@@ -57,4 +63,8 @@
 
 .danger-text{
     color: red;
+}
+
+.edit-password-input-sign{
+    min-width: 150px;
 }
