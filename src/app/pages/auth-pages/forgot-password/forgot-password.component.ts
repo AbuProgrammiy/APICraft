@@ -30,6 +30,7 @@ export class ForgotPasswordComponent {
       next: (response) => {
         if (response.token != undefined) {
           localStorage.setItem("accessToken", response.token)
+          localStorage.setItem("isUserRegistered", "true")
 
           this.router.navigate([""])
         }

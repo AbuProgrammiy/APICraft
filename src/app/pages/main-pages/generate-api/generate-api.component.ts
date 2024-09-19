@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class GenerateApiComponent {
   lang = localStorage.getItem("language") != null ? localStorage.getItem("language") : "Uzbek"
 
+  isUserRegistered=localStorage.getItem("isUserRegistered")=="true"
   currentMode: string = "choosingMode"
   tableName!: string
   columns!:string[]

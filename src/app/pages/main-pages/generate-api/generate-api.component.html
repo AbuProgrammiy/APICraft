@@ -1,15 +1,43 @@
 <div class="main">
-    <app-navbar (changeLang)="changeLang($event)"/>
-    @if (currentMode=="choosingMode") {
-        <api-types [lang]="lang!" (selectAPIType)="selectAPIType($event)"/>
+    <app-navbar [lang]="lang!" (changeLang)="changeLang($event)"/>
+    @if (isUserRegistered) {
+        @if (currentMode=="choosingMode") {
+            <api-types [lang]="lang!" (selectAPIType)="selectAPIType($event)"/>
+        }
+        @else if (currentMode=="tableNameInput") {
+            <table-name-input [lang]="lang!" (changeCurrentMode)="changeCurrentMode($event)" (sendTableName)="getTableName($event)"/>
+        }
+        @else if (currentMode=="coulmnInputs"){
+            <coulm-inputs [lang]="lang!" [tableName]="tableName!" (changeCurrentMode)="changeCurrentMode($event)" (sendColumns)="getColumns($event)"/>
+        }
+        @else if (currentMode=="showResult") {
+            <show-flexible-table-result [lang]="lang!" [tableName]="tableName" [columns]="columns"/>
+        }
     }
-    @else if (currentMode=="tableNameInput") {
-        <table-name-input [lang]="lang!" (changeCurrentMode)="changeCurrentMode($event)" (sendTableName)="getTableName($event)"/>
-    }
-    @else if (currentMode=="coulmnInputs"){
-        <coulm-inputs [lang]="lang!" [tableName]="tableName!" (changeCurrentMode)="changeCurrentMode($event)" (sendColumns)="getColumns($event)"/>
-    }
-    @else if (currentMode=="showResult") {
-        <show-flexible-table-result [lang]="lang!" [tableName]="tableName" [columns]="columns"/>
+    @else {
+        <div class="warning-message-handler">
+            <div class="warning-message-inner-handler">
+                <div class="content-handler">
+                    <h5 class="warning-text">
+                        @if (lang=="Uzbek") {
+                            API generatsiya qilish uchun ro'yhattan o'ting!
+                        }
+                        @else if (lang=="English") {
+                            Sign in/up for generate API!
+                        }
+                    </h5>
+                </div>
+                <div class="content-handler">
+                    <a routerLink="/sign-in-up" type="button" class="btn btn-outline-light">
+                        @if (lang=="Uzbek") {
+                            Kirish/Ro'yhattan o'tish
+                        }
+                        @else if (lang=="English") {
+                            Sign in/up
+                        }
+                    </a>
+                </div>
+            </div>
+        </div>
     }
 </div>

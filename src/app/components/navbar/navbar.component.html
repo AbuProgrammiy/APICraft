@@ -46,14 +46,26 @@
           </ul>
         </li>
       </ul>
-      <a class="nav-link active profile" aria-current="page" routerLink="/profile">
-        @if (lang=="Uzbek") {
-        Profil
-        }
-        @else if (lang=="English") {
-        Profile
-        }
-      </a>
+      @if (isUserRegistered) {
+        <a class="nav-link active profile" aria-current="page" routerLink="/profile">
+          @if (lang=="Uzbek") {
+          Profil
+          }
+          @else if (lang=="English") {
+          Profile
+          }
+        </a>
+      }
+      @else {
+        <a class="nav-link active profile" aria-current="page" routerLink="/sign-in-up">
+          @if (lang=="Uzbek") {
+          Kirish/Ro'yxatdan-o'tish
+          }
+          @else if (lang=="English") {
+          Sign-in-up
+          }
+        </a>
+      }
     </div>
   </div>
 </nav>

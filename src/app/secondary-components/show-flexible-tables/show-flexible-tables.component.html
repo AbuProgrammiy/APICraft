@@ -18,8 +18,22 @@
     </div>
     }
     @else {
-        @for (tableName of tableNames; track $index) {
-            <flexible-table [lang]="lang!" [tableName]="tableName" [columns]="tables[tableName]"/>
-        }
+    @if (tableNames.length==0) {
+    <div class="big-content-handler">
+        <p class="warning-text">
+            @if (lang=="Uzbek") {
+            Sizning hali Tablelaringiz yoq!
+            }
+            @else if (lang=="English") {
+            You have not any Tables yet!
+            }
+        </p>
+    </div>
+    }
+    @else {
+    @for (tableName of tableNames; track $index) {
+    <flexible-table [lang]="lang!" [tableName]="tableName" [columns]="tables[tableName]" />
+    }
+    }
     }
 </div>

@@ -1,3 +1,25 @@
 .main{
     width: 100%;
+    background-color: black;
+}
+
+.warning-message-handler{
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+}
+
+.warning-message-inner-handler{
+    width: 100%;
+}
+
+.content-handler{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.warning-text{
+    padding: 20px;
+    color: white;
 }

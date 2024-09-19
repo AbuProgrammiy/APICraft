@@ -10,6 +10,10 @@ export class AuthService {
 
   constructor(private httpClient:HttpClient) { }
 
+  isUserExists(id:string):Observable<any>{
+    return this.httpClient.get(`${environment.baseUrl}User/IsUserExists/${id}`)
+  }
+
   verifyUser(body:any):Observable<any>{
     return this.httpClient.post(environment.baseUrl+"User/SendVerificationToUser",body)
   }

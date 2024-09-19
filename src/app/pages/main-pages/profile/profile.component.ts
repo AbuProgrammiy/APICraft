@@ -206,6 +206,5 @@ export class ProfileComponent {
         console.log(err);
       }
     })
-
   }
 }

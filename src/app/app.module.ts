@@ -31,6 +31,7 @@ import { ShowFlexibleTableResultComponent } from './secondary-components/show-fl
 import { MyApisTypesComponent } from './secondary-components/my-apis-types/my-apis-types.component';
 import { ShowFlexibleTablesComponent } from './secondary-components/show-flexible-tables/show-flexible-tables.component';
 import { ProfileComponent } from './pages/main-pages/profile/profile.component';
+import { NewsComponent } from './pages/main-pages/news/news.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { ProfileComponent } from './pages/main-pages/profile/profile.component';
     MyApisTypesComponent,
     ShowFlexibleTablesComponent,
     ProfileComponent,
+    NewsComponent,
   ],
   imports: [
     BrowserModule,

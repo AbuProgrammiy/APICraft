@@ -8,6 +8,7 @@ import { Component, Output } from '@angular/core';
 export class MyAPIsComponent {
   lang = localStorage.getItem("language") != null ? localStorage.getItem("language") : "Uzbek"
 
+  isUserRegistered=localStorage.getItem("isUserRegistered")=="true"
   currentMode:string="choosingType"
 
   changeLang(lang: string) {

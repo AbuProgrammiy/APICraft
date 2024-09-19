@@ -1,9 +1,37 @@
 <div class="main">
-    <app-navbar (changeLang)="changeLang($event)"/>
-    @if (currentMode=="choosingType") {
-        <my-apis-types [lang]="lang!" (selectAPIType)="selectAPIType($event)"/>
+    <app-navbar [lang]="lang!" (changeLang)="changeLang($event)"/>
+    @if (isUserRegistered) {
+        @if (currentMode=="choosingType") {
+            <my-apis-types [lang]="lang!" (selectAPIType)="selectAPIType($event)"/>
+        }
+        @else if (currentMode=="showFlexibleTables") {
+            <show-flexible-tables [lang]="lang!" (changeCurrentMode)="changeCurrentMode($event)"/>
+        }
     }
-    @else if (currentMode=="showFlexibleTables") {
-        <show-flexible-tables [lang]="lang!" (changeCurrentMode)="changeCurrentMode($event)"/>
+    @else {
+        <div class="warning-message-handler">
+            <div class="warning-message-inner-handler">
+                <div class="content-handler">
+                    <h5 class="warning-text">
+                        @if (lang=="Uzbek") {
+                            APIlaringizni ko'rish uchun akkauntingizga kirirng!
+                        }
+                        @else if (lang=="English") {
+                            Sign in/up for seeing your APIs!
+                        }
+                    </h5>
+                </div>
+                <div class="content-handler">
+                    <a routerLink="/sign-in-up" type="button" class="btn btn-outline-light">
+                        @if (lang=="Uzbek") {
+                            Kirish/Ro'yhattan o'tish
+                        }
+                        @else if (lang=="English") {
+                            Sign in/up
+                        }
+                    </a>
+                </div>
+            </div>
+        </div>
     }
 </div>

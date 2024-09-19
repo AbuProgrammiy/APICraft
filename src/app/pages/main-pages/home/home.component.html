@@ -1,3 +1,111 @@
 <div class="main">
-    <app-navbar/>
+    <div class="section welcome-content">
+        <app-navbar [lang]="lang!" (changeLang)="changeLang($event)"/>
+        <div class="inner-welcome-content">
+            <div class="content-saver">
+                <div class="content-handler">
+                    <h1 class="welcome-content-header">
+                        @if (lang=="Uzbek") {
+                            Xush kelibsiz!
+                        }
+                        @else if (lang=="English") {
+                            Welcome!
+                        }
+                    </h1>
+                </div>
+                <div class="content-handler">
+                    <p class="welcome-content-text">
+                        @if (lang=="Uzbek") {
+                            Ushbu sayt orqali kod yozmasdan, server ishlatmasdan,
+                            vaqtingizni tejagan holda API generatsiya qiling.
+                        }
+                        @else if (lang=="English") {
+                            Generate your API without coding, without using server,
+                            saving your time by using this site only.   
+                        }
+                    </p>
+                </div>
+                <div class="content-handler">
+                    <button routerLink="generate-api" class="welcome-btn btn btn-primary">
+                        @if (lang=="Uzbek") {
+                            Boshlash
+                        }
+                        @else if (lang=="English") {
+                            Get started
+                        }
+                    </button>
+                    <button class="welcome-btn btn btn-outline-light">
+                        @if (lang=="Uzbek") {
+                            Misolarni sinash
+                        }
+                        @else if (lang=="English") {
+                            Try examples
+                        }
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="line">
+    <div class="section statistics-content">
+        <div class="content-saver">
+            <div class="big-content-handler">
+                <h2 class="stat-sign">
+                    @if (lang=="Uzbek") {
+                        Foydalanuvchilar:
+                    }
+                    @else if (lang=="English") {
+                        Users:
+                    }
+                </h2>
+                <h1 class="stat-data">{{usersCount}}</h1>
+            </div>
+            <div class="big-content-handler">
+                <h2 class="stat-sign">
+                    @if (lang=="Uzbek") {
+                        Generatsiya qilingan Tablelar:
+                    }
+                    @else if (lang=="English") {
+                        Generated Tables:
+                    }
+                </h2>
+                <h1 class="stat-data">{{generatedTablesCount}}</h1>
+            </div>
+            <div class="big-content-handler">
+                <h2 class="stat-sign">
+                    @if (lang=="Uzbek") {
+                        Bir soat ichidagi requestlar:
+                    }
+                    @else if (lang=="English") {
+                        Requests in one hour:
+                    }
+                </h2>
+                <h1 class="stat-data">{{requestsInOneHourCount}}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="section fast-handler">
+        <div class="inner-fast">
+            <h1 class="fast-header">
+                @if (lang=="Uzbek") {
+                    TEZ
+                }
+                @else if (lang=="English") {
+                    FAST
+                }
+            </h1>
+        </div>
+    </div>
+    <div class="section secure-handler">
+        <div class="inner-secure">
+            <h1 class="secure-header">
+                @if (lang=="Uzbek") {
+                    XAVFSIZ
+                }
+                @else if (lang=="English") {
+                    SECURE
+                }
+            </h1>
+        </div>
+    </div>
 </div>

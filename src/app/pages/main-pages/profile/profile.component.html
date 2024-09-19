@@ -1,5 +1,5 @@
 <div class="main">
-    <app-navbar (changeLang)="changeLang($event)" />
+    <app-navbar [lang]="lang!" (changeLang)="changeLang($event)" />
     <div class="content-handler">
         <div class="profile-handler" data-bs-theme="dark">
             <div class="input-group">
@@ -98,7 +98,7 @@
                 <div class="managment-btn-handler-center">
                     <button (click)="cancel()" [class.invisable]="isEmailEditing==false&&isSecurityKeyEditing==false" class="btn btn-outline-light managment-btn">
                         @if (lang=="Uzbek") {
-                        Bekor qilish
+                        Bekor
                         }
                         @else if (lang=="English") {
                         Cancel

@@ -8,6 +8,7 @@ import { MyAPIsComponent } from './pages/main-pages/my-apis/my-apis.component';
 import { GenerateApiComponent } from './pages/main-pages/generate-api/generate-api.component';
 import { ExampleComponent } from './example/example.component';
 import { ProfileComponent } from './pages/main-pages/profile/profile.component';
+import { NewsComponent } from './pages/main-pages/news/news.component';
 
 const routes: Routes = [
   {path:"example",component:ExampleComponent},
@@ -16,6 +17,8 @@ const routes: Routes = [
   {path:"forgot-password",component:ForgotPasswordComponent},
   {path:"my-apis",component:MyAPIsComponent},
   {path:"generate-api",component:GenerateApiComponent},
+  {path:"news",component:NewsComponent
+},
   {path:"profile",component:ProfileComponent},
   {path:"",component:HomeComponent}
 ];

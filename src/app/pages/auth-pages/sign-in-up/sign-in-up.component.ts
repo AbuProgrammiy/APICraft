@@ -59,6 +59,7 @@ export class SignInUpComponent {
       next: (response) => {
         if (response.token != undefined) {
           localStorage.setItem("accessToken", response.token)
+          localStorage.setItem("isUserRegistered", "true")
 
           this.router.navigate([""])
         }
@@ -76,17 +77,17 @@ export class SignInUpComponent {
 
   forgotPassword() {
     this.isForgeted = true
-
+  
     const body = {
       email: this.email,
       isPasswordForgotten: true
     }
-
+  
     this.authService.verifyUser(body).subscribe({
       next: (response) => {
         if (response.isSuccess) {
           sessionStorage.setItem("email", this.email)
-
+  
           this.router.navigate(["forgot-password"])
         }
         else {
