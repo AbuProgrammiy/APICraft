@@ -15,7 +15,7 @@ export class ProfileComponent {
     this.assignVariables()
   }
 
-  lang = localStorage.getItem("language") != null ? localStorage.getItem("language") : "Uzbek"
+  lang:string=(typeof localStorage!=='undefined')?(localStorage.getItem("language")!=null?localStorage.getItem("language")!:"Uzbek"):"Uzbek"
 
   isEmailEditing: boolean = false
   isEmailLoading: boolean = false

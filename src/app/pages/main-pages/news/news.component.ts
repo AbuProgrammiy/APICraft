@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './news.component.scss'
 })
 export class NewsComponent {
-  lang=localStorage.getItem("language")!=null?localStorage.getItem("language"):"Uzbek"
+  lang:string=(typeof localStorage!=='undefined')?(localStorage.getItem("language")!=null?localStorage.getItem("language")!:"Uzbek"):"Uzbek"
 }

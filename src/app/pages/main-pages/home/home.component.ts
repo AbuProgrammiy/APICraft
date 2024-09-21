@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { StatisticsService } from '../../../services/statistics/statistics.service';
 
 @Component({
   selector: 'app-home',
@@ -6,16 +7,20 @@ import { Component } from '@angular/core';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  lang = localStorage.getItem("language") != null ? localStorage.getItem("language") : "Uzbek"
-
-  usersCount:number=34
-  generatedTablesCount:number=130
-  requestsInOneHourCount:number=12
-
-  ngOnInit(): void {
-    this.sectionScrollManager()
+  constructor(private statisticsService:StatisticsService){
+    this.getBasicStatistics()
     this.statisticsManager()
   }
+
+  ngAfterViewInit(): void {
+    this.sectionScrollManager()
+  }
+
+  lang:string=(typeof localStorage!=='undefined')?(localStorage.getItem("language")!=null?localStorage.getItem("language")!:"Uzbek"):"Uzbek"
+
+  usersCount:number=0
+  tablesCount:number=0
+  requestsCount:number=0
 
   changeLang(lang:any){
     this.lang=lang
@@ -44,23 +49,36 @@ export class HomeComponent {
     });
   }
 
+  getBasicStatistics(){
+    this.statisticsService.getBasicStatistics().subscribe({
+      next:(response)=>{
+        this.usersCount=response.usersCount
+        this.tablesCount=response.tablesCount
+        this.requestsCount=response.requestsCount
+      },
+      error:(err)=>{
+
+      }
+    })
+  }
+
   statisticsManager(){
     const minus=3
     let count=minus
 
     this.usersCount=this.usersCount>=minus?this.usersCount-minus:this.usersCount
-    this.generatedTablesCount=this.generatedTablesCount>=minus?this.generatedTablesCount-minus:this.generatedTablesCount
-    this.requestsInOneHourCount=this.requestsInOneHourCount>=minus?this.requestsInOneHourCount-minus:this.requestsInOneHourCount
+    this.tablesCount=this.tablesCount>=minus?this.tablesCount-minus:this.tablesCount
+    this.requestsCount=this.requestsCount>=minus?this.requestsCount-minus:this.requestsCount
 
     const statisticsInterval = setInterval(()=>{
       if(this.usersCount>=minus){
         this.usersCount++
       }
-      if(this.generatedTablesCount>=minus){
-        this.generatedTablesCount++
+      if(this.tablesCount>=minus){
+        this.tablesCount++
       }
-      if(this.requestsInOneHourCount>=minus){
-        this.requestsInOneHourCount++
+      if(this.requestsCount>=minus){
+        this.requestsCount++
       }
 
       count--

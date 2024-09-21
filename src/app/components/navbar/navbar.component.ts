@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input, OnInit, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -7,10 +7,10 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
 })
 
 export class NavbarComponent {
-  @Input() lang!:string
+  @Input() lang: string=""
   @Output() changeLang = new EventEmitter();
 
-  isUserRegistered:boolean=localStorage.getItem("isUserRegistered")=="true"
+  isUserRegistered:boolean=(typeof localStorage !=='undefined')?(localStorage.getItem("isUserRegistered")=="true"):false
 
   chooseLang(choosenLang: string) {
     this.lang = choosenLang;

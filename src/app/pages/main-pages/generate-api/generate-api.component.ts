@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 
 @Component({
   selector: 'app-generate-api',
@@ -6,9 +6,10 @@ import { Component } from '@angular/core';
   styleUrl: './generate-api.component.scss'
 })
 export class GenerateApiComponent {
-  lang = localStorage.getItem("language") != null ? localStorage.getItem("language") : "Uzbek"
 
-  isUserRegistered=localStorage.getItem("isUserRegistered")=="true"
+  lang:string=(typeof localStorage!=='undefined')?(localStorage.getItem("language")!=null?localStorage.getItem("language")!:"Uzbek"):"Uzbek"
+
+  isUserRegistered:boolean=(typeof localStorage !=='undefined')?(localStorage.getItem("isUserRegistered")=="true"):false
   currentMode: string = "choosingMode"
   tableName!: string
   columns!:string[]

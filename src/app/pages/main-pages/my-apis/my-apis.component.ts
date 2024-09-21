@@ -6,7 +6,8 @@ import { Component, Output } from '@angular/core';
   styleUrl: './my-apis.component.scss'
 })
 export class MyAPIsComponent {
-  lang = localStorage.getItem("language") != null ? localStorage.getItem("language") : "Uzbek"
+
+  lang:string=(typeof localStorage!=='undefined')?(localStorage.getItem("language")!=null?localStorage.getItem("language")!:"Uzbek"):"Uzbek"
 
   isUserRegistered=localStorage.getItem("isUserRegistered")=="true"
   currentMode:string="choosingType"
