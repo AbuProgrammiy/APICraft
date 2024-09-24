@@ -38,7 +38,7 @@ export class ProfileComponent {
   }
 
   assignVariables() {
-    const decodetAccessToken: any = jwtDecode(localStorage.getItem("accessToken")!)
+    const decodetAccessToken: any = jwtDecode((typeof localStorage!=='undefined')?localStorage.getItem("accessToken")!:"")
     this.userId = decodetAccessToken.Id
     this.email = decodetAccessToken.Email
     this.securityKey = decodetAccessToken.SecurityKey

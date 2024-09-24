@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, Input, OnInit, AfterViewInit } from '@angular/core';
+import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
