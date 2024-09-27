@@ -9,7 +9,6 @@ import { StatisticsService } from '../../../services/statistics/statistics.servi
 export class HomeComponent {
   constructor(private statisticsService: StatisticsService) {
     this.getBasicStatistics()
-    this.statisticsManager()
   }
 
   ngAfterViewInit(): void {
@@ -60,31 +59,5 @@ export class HomeComponent {
         console.log(err);
       }
     })
-  }
-
-  statisticsManager() {
-    const minus = 3
-    let count = minus
-
-    this.usersCount = this.usersCount >= minus ? this.usersCount - minus : this.usersCount
-    this.tablesCount = this.tablesCount >= minus ? this.tablesCount - minus : this.tablesCount
-    this.requestsCount = this.requestsCount >= minus ? this.requestsCount - minus : this.requestsCount
-
-    const statisticsInterval = setInterval(() => {
-      if (this.usersCount >= minus) {
-        this.usersCount++
-      }
-      if (this.tablesCount >= minus) {
-        this.tablesCount++
-      }
-      if (this.requestsCount >= minus) {
-        this.requestsCount++
-      }
-
-      count--
-      if (count == 0) {
-        clearInterval(statisticsInterval)
-      }
-    }, 300)
   }
 }
