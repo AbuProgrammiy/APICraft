@@ -1,3 +1,3 @@
 export const environment = {
-    baseUrl:"https://api.apicraft.uz/api/"
+    baseUrl:"https://localhost:7162/api/"
 };

@@ -1,0 +1,100 @@
+.main {
+    width: 100%;
+    min-height: 100vh;
+    background-color: black;
+}
+
+.secondary-navbar-handler {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.secondary-navbar-btn {
+    width: 250px;
+    height: 40px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.inner-main {
+    width: 100%;
+    height: 92vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-box {
+    width: 550px;
+}
+
+.description-handler {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.description {
+    font-weight: 100;
+    color: white;
+}
+
+.form {
+    width: 100%;
+    background-color: rgb(33, 37, 41);
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.back-arrow {
+    margin-bottom: 20px;
+    color: white;
+}
+
+.back-arrow:hover {
+    cursor: pointer;
+}
+
+.input-group {
+    margin: 0 !important;
+}
+
+.input-group-text {
+    min-width: 100px;
+}
+
+.input-message-handler {
+    min-height: 30px;
+}
+
+.input-message {
+    font-size: 15px;
+    margin: 0;
+    color: red;
+}
+
+.m-btn {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.progress {
+    cursor: wait;
+}
+
+.a-div {
+    display: flex;
+    justify-content: center;
+}
+
+.a-link {
+    color: white;
+    font-weight: 100;
+    text-decoration: none;
+}
+
+.a-link:hover {
+    cursor: pointer;
+}

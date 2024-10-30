@@ -1,9 +1,9 @@
 import { Component, Input, Renderer2 } from '@angular/core';
-import { CRUDService } from '../../services/CRUD/crud.service';
+import { CRUDService } from '../../../services/CRUD/crud.service';
 import { jwtDecode } from 'jwt-decode';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../../environments/environment.development';
 import { MessageService } from 'primeng/api';
-import { TableService } from '../../services/table/table.service';
+import { TableService } from '../../../services/table/table.service';
 
 @Component({
   selector: 'flexible-table',

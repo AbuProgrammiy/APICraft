@@ -1,0 +1,33 @@
+<div class="main">
+    <p (click)="back()" class="back-arrow">&#8592;</p>
+    <div class="content-handler">
+        <h3 class="header">
+            @if (lang=="Uzbek") {
+            Tablega nom bering:
+            }
+            @else if(lang=="English") {
+            Let's give name for a Table:
+            }
+        </h3>
+    </div>
+    <div class="content-handler">
+        <input [(ngModel)]="tableName" data-bs-theme="dark" type="text" class="form-control input">
+    </div>
+    <div class="content-handler">
+        <button (click)="next()" [class.disabled]="tableName==undefined||tableName==''||isLoading==true" class="btn btn-success">
+            @if(isLoading){
+            <div class="spinner-border spinner-border-sm" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            }
+            @else{
+            @if (lang=="Uzbek") {
+            Keyngisi
+            }
+            @else if(lang=="English") {
+            Next
+            }
+            }
+        </button>
+    </div>
+</div>

@@ -1,0 +1,140 @@
+<div class="main" data-bs-theme="dark">
+    <div class="secondary-navbar-handler">
+        <a routerLink="" class="btn btn-success secondary-navbar-btn">Back to main</a>
+    </div>
+    <div class="inner-main">
+        <div class="content-box">
+            <div class="description-handler">
+                <h3 class="description">Welcome to APICraft!</h3>
+            </div>
+            <form class="form">
+                @if(isElementVisible("back-arrow")){
+                <h2 (click)="back()" class="back-arrow"><i class="bi bi-arrow-left"></i></h2>
+                }
+                @if (isElementVisible("username-input")) {
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Username</span>
+                    <input [(ngModel)]="username" (input)="usernameMessage=''" class="form-control"
+                        [disabled]="isLoading" type="text" name="username" placeholder="Username">
+                </div>
+                <div class="input-message-handler">
+                    <p class="input-message">{{usernameMessage}}</p>
+                </div>
+                }
+                @if (isElementVisible("email-input")) {
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Email</span>
+                    <input [(ngModel)]="email" (input)="emailMessage=''" class="form-control" [disabled]="isLoading"
+                        type="email" name="email" placeholder="Email">
+                </div>
+                <div class="input-message-handler">
+                    <p class="input-message">{{emailMessage}}</p>
+                </div>
+                }
+                @if(isElementVisible("password-input")){
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Password</span>
+                    <input [(ngModel)]="password" (input)="passwordMessage=''" class="form-control"
+                        [disabled]="isLoading" type="text" name="password" placeholder="Password">
+                </div>
+                <div class="input-message-handler">
+                    <p class="input-message">{{passwordMessage}}</p>
+                </div>
+                }
+                @if(isElementVisible("code-input")){
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Sent code:</span>
+                    <input [(ngModel)]="code" (input)="codeMessage=''" class="form-control" [disabled]="isLoading"
+                        type="text" name="code" placeholder="Sent code">
+                </div>
+                <div class="input-message-handler">
+                    <p class="input-message">{{codeMessage}}</p>
+                </div>
+                }
+                @if(isElementVisible("new-password-input")){
+                <div class="input-group mb-3">
+                    <span class="input-group-text">New password:</span>
+                    <input [(ngModel)]="newPassword" (input)="codeMessage=''" class="form-control" [disabled]="isLoading"
+                        type="text" name="new-password" placeholder="New password">
+                </div>
+                <div class="input-message-handler">
+                    <p class="input-message">{{newPasswordMessage}}</p>
+                </div>
+                }
+                @if (isElementVisible("register-btn")) {
+                <div>
+                    <button [disabled]="isLoading" (click)="letMeJoin()" type="button" class="btn m-btn"
+                        [ngClass]="{'btn-primary':status==Statuses.register, 'btn-outline-primary':status!=Statuses.register}">
+                        @if(isJoining){
+                        <div class="spinner-border spinner-border-sm" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        }
+                        @else {
+                        Let me join!
+                        }
+                    </button>
+                </div>
+                }
+                @if (isElementVisible("login-btn")) {
+                <div>
+                    <button [disabled]="isLoading" (click)="letMeIn()" type="button" class="btn m-btn"
+                        [ngClass]="{'btn-success':status==Statuses.login, 'btn-outline-success':status!=Statuses.login}">
+                        @if(isInning){
+                        <div class="spinner-border spinner-border-sm" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        }
+                        @else {
+                        Let me In!
+                        }
+                    </button>
+                </div>
+                }
+                @if (isElementVisible("forgot-password-btn")) {
+                <div>
+                    <button [disabled]="isLoading" (click)="forgotPassword()" type="button" class="btn m-btn"
+                        [ngClass]="{'btn-light':status==Statuses.forgotPassword, 'btn-outline-light':status!=Statuses.forgotPassword}">
+                        @if(isForgetting){
+                        <div class="spinner-border spinner-border-sm" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        }
+                        @else {
+                        Forgot password!
+                        }
+                    </button>
+                </div>
+                }
+                @if (isElementVisible("verify-email-btn")) {
+                <div>
+                    <button [disabled]="isLoading" (click)="verifyEmail()" type="button" class="btn btn-success m-btn">
+                        @if(isVerifiying){
+                        <div class="spinner-border spinner-border-sm" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        }
+                        @else {
+                        Verify Email
+                        }
+                    </button>
+                </div>
+                }
+                @if (isElementVisible("change-password-btn")) {
+                <div>
+                    <button [disabled]="isLoading" (click)="changePassword()" type="button" class="btn btn-success m-btn">
+                        @if(isChangingPassword){
+                        <div class="spinner-border spinner-border-sm" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        }
+                        @else {
+                        Change password
+                        }
+                    </button>
+                </div>
+                }
+            </form>
+        </div>
+    </div>
+</div>

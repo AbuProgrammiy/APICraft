@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
-import { AuthService } from '../../../services/auth/auth.service';
+import { UserService } from '../../../services/user/user.service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent {
 
-  constructor(private authService: AuthService, private messageService: MessageService, private router: Router) {
+  constructor(private userService: UserService, private messageService: MessageService, private router: Router) {
     this.assignVariables()
   }
 
@@ -56,7 +56,7 @@ export class ProfileComponent {
       email: this.email
     }
 
-    this.authService.verifyUser(body).subscribe({
+    this.userService.verifyUser(body).subscribe({
       next: (response) => {
         if (response.isSuccess == true) {
           document.getElementById("toggle-edit-email-modal")!.click()
@@ -83,7 +83,7 @@ export class ProfileComponent {
       sentPassword: this.sentPassword
     }
 
-    this.authService.updateEmail(body).subscribe({
+    this.userService.updateEmail(body).subscribe({
       next: (response) => {
         if (response.isSuccess == true) {
           localStorage.setItem("accessToken", response.response)
@@ -114,7 +114,7 @@ export class ProfileComponent {
       newPassword: this.newPassword
     }
 
-    this.authService.updatePassword(body).subscribe({
+    this.userService.updatePassword(body).subscribe({
       next: (response) => {
         if (response.isSuccess) {
           document.getElementById("dismiss-edit-password-model")!.click()
@@ -147,7 +147,7 @@ export class ProfileComponent {
       newSecurityKey: this.securityKey
     }
 
-    this.authService.updateSecurityKey(body).subscribe({
+    this.userService.updateSecurityKey(body).subscribe({
       next: (response) => {
         if (response.isSuccess) {
           localStorage.setItem("accessToken", response.response)
@@ -167,8 +167,9 @@ export class ProfileComponent {
       }
     })
   }
-
+  
   logOut() {
+    localStorage.removeItem("isUserRegistered")
     localStorage.removeItem("accessToken")
     this.messageService.add({ severity: 'contrast', summary: 'Success', detail: 'Successfuly logged out!' });
     this.router.navigate(["sign-in-up"])
@@ -187,7 +188,7 @@ export class ProfileComponent {
   deleteUserAccount() {
     this.isAccountLoading = true
 
-    this.authService.deleteUser((jwtDecode(localStorage.getItem("accessToken")!)as any).Id).subscribe({
+    this.userService.deleteUser((jwtDecode(localStorage.getItem("accessToken")!)as any).Id).subscribe({
       next: (response) => {
         if (response.isSuccess) {
           this.messageService.add({ severity: 'contrast', summary: 'Success', detail: response.response });

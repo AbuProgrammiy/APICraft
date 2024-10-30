@@ -19,7 +19,6 @@ export class HomeComponent {
 
   usersCount: number = 0
   tablesCount: number = 0
-  requestsCount: number = 0
 
   changeLang(lang: any) {
     this.lang = lang
@@ -51,13 +50,10 @@ export class HomeComponent {
   getBasicStatistics() {
     this.statisticsService.getBasicStatistics().subscribe({
       next: (response) => {
-        this.usersCount = response.usersCount
-        this.tablesCount = response.tablesCount
-        this.requestsCount = response.requestsCount
+        this.usersCount = response.response.usersCount
+        this.tablesCount = response.response.tablesCount
       },
-      error: (err) => {
-        console.log(err);
-      }
+      error: (err) => {}
     })
   }
 }
