@@ -124,7 +124,7 @@ export class SignInUpComponent {
       email: this.email
     }
 
-    this.userService.verifyUser(body).subscribe({
+    this.userService.verifyUserToRegister(body).subscribe({
       next: (response) => {
         if (response.isSuccess) {
           this.status = this.Statuses.verifyEmail
@@ -239,7 +239,7 @@ export class SignInUpComponent {
       isPasswordForgotten: true
     }
 
-    this.userService.verifyUser(body).subscribe({
+    this.userService.verifyUserToChangePassword(body).subscribe({
       next: (response) => {
         if (response.isSuccess) {
           this.status = this.Statuses.changePassword

@@ -3,9 +3,43 @@
     <div class="content-handler">
         <div class="profile-handler" data-bs-theme="dark">
             <div class="input-group">
+                <span class="input-group-text profil-input-sign">Username</span>
+                <input type="text" class="form-control" [disabled]="isUsernameEditing==false||isUsernameLoading==true" [(ngModel)]="username" (input)="usernameMessage=''">
+                <button class="btn"
+                    [ngClass]="{'btn-warning':isUsernameEditing==false, 'btn-success':isUsernameEditing==true, 'disabled':username==''||isUsernameLoading==true}"
+                    (click)="editUsername()">
+                    @if (isUsernameEditing==true) {
+                    @if (isUsernameLoading==true) {
+                    <div class="spinner-border spinner-border-sm" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    }
+                    @else {
+                    @if (lang=="Uzbek") {
+                    Tasdiqlash
+                    }
+                    @else if (lang=="English") {
+                    Submit
+                    }
+                    }
+                    }
+                    @else {
+                    @if (lang=="Uzbek") {
+                    Tahrirlash
+                    }
+                    @else if (lang=="English") {
+                    Edit
+                    }
+                    }
+                </button>
+            </div>
+            <div class="input-message-handler">
+                <p class="input-message">{{usernameMessage}}</p>
+            </div>
+            <div class="input-group">
                 <span class="input-group-text profil-input-sign">Email</span>
                 <input type="text" class="form-control" [disabled]="isEmailEditing==false||isEmailLoading==true"
-                    [(ngModel)]="email">
+                    [(ngModel)]="email" (input)="emailMessage=''">
                 <button class="btn"
                     [ngClass]="{'btn-warning':isEmailEditing==false, 'btn-success':isEmailEditing==true, 'disabled':email==''||isEmailLoading==true}"
                     (click)="editEmail()">
@@ -34,6 +68,9 @@
                     }
                 </button>
             </div>
+            <div class="input-message-handler">
+                <p class="input-message">{{emailMessage}}</p>
+            </div>
             <div class="input-group">
                 <span class="input-group-text profil-input-sign">
                     @if (lang=="Uzbek") {
@@ -53,37 +90,6 @@
                     }
                 </button>
             </div>
-            <div class="input-group">
-                <span class="input-group-text profil-input-sign">SecurityKey</span>
-                <input type="text" class="form-control" [disabled]="isSecurityKeyEditing==false||isSecurityKeyLoading==true" [(ngModel)]="securityKey">
-                <button class="btn"
-                    [ngClass]="{'btn-warning':isSecurityKeyEditing==false, 'btn-success':isSecurityKeyEditing==true, 'disabled':securityKey==''||isSecurityKeyLoading==true}"
-                    (click)="editSecurityKey()">
-                    @if (isSecurityKeyEditing==true) {
-                    @if (isSecurityKeyLoading==true) {
-                    <div class="spinner-border spinner-border-sm" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                    }
-                    @else {
-                    @if (lang=="Uzbek") {
-                    Tasdiqlash
-                    }
-                    @else if (lang=="English") {
-                    Submit
-                    }
-                    }
-                    }
-                    @else {
-                    @if (lang=="Uzbek") {
-                    Tahrirlash
-                    }
-                    @else if (lang=="English") {
-                    Edit
-                    }
-                    }
-                </button>
-            </div>
             <div class="managment-btn-handler">
                 <div class="managment-btn-handler-left">
                     <button (click)="logOut()" class="btn btn-primary managment-btn">
@@ -96,7 +102,7 @@
                     </button>
                 </div>
                 <div class="managment-btn-handler-center">
-                    <button (click)="cancel()" [class.invisable]="isEmailEditing==false&&isSecurityKeyEditing==false" class="btn btn-outline-light managment-btn">
+                    <button (click)="cancel()" [class.invisable]="isEmailEditing==false&&isUsernameEditing==false" class="btn btn-outline-light managment-btn">
                         @if (lang=="Uzbek") {
                         Bekor
                         }
@@ -139,12 +145,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                @if (lang=="Uzbek") {
-                Yangi emailingizni tasdiqlang:
-                }
-                @else if (lang=="English") {
-                Confirm your new email:
-                }
+                <p>
+                    @if (lang=="Uzbek") {
+                    Yangi emailingizni tasdiqlang:
+                    }
+                    @else if (lang=="English") {
+                    Confirm your new email:
+                    }
+                </p>
                 <div class="input-group mb-3">
                     <span class="input-group-text">
                         @if (lang=="Uzbek") {
@@ -156,7 +164,9 @@
                     </span>
                     <input type="text" class="form-control" [(ngModel)]="sentPassword">
                 </div>
-                <p id="email-danger-text" class="danger-text"></p>
+                <div class="input-message-handler">
+                    <p class="input-message">{{emailMessage}}</p>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
@@ -205,7 +215,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="input-group mb-3">
+                <div class="input-group">
                     <span class="input-group-text edit-password-input-sign">
                         @if (lang=="Uzbek") {
                         joriy parol:
@@ -214,10 +224,12 @@
                         current password:
                         }
                     </span>
-                    <input type="text" class="form-control" [(ngModel)]="currentPassword">
+                    <input (input)="currentPasswordMessage=''" type="text" class="form-control" [(ngModel)]="currentPassword">
                 </div>
-                <p id="password-danger-text" class="danger-text"></p>
-                <div class="input-group mb-3">
+                <div class="input-message-handler">
+                    <p class="input-message">{{currentPasswordMessage}}</p>
+                </div>
+                <div class="input-group">
                     <span class="input-group-text edit-password-input-sign">
                         @if (lang=="Uzbek") {
                         yangi parol:
@@ -226,7 +238,10 @@
                         new password:
                         }
                     </span>
-                    <input type="text" class="form-control" [(ngModel)]="newPassword">
+                    <input (input)="newPasswordMessage=''" type="text" class="form-control" [(ngModel)]="newPassword">
+                </div>
+                <div class="input-message-handler">
+                    <p class="input-message">{{newPasswordMessage}}</p>
                 </div>
             </div>
             <div class="modal-footer">

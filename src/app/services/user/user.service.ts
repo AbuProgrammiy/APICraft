@@ -14,8 +14,16 @@ export class UserService {
     return this.httpClient.get(`${environment.baseUrl}User/IsUserExists/${id}`)
   }
 
-  verifyUser(body:any):Observable<any>{
-    return this.httpClient.post(environment.baseUrl+"User/SendVerificationToUser",body)
+  verifyUserToRegister(body:any):Observable<any>{
+    return this.httpClient.post(environment.baseUrl+"User/SendVerificationToRegister",body)
+  }
+
+  verifyUserToChangePassword(body:any):Observable<any>{
+    return this.httpClient.post(environment.baseUrl+"User/SendVerificationToChangePassword",body)
+  }
+
+  verifyUserToUpdateEmail(body:any):Observable<any>{
+    return this.httpClient.post(environment.baseUrl+"User/SendVerificationToUpdateEmail",body)
   }
 
   logIn(body:any):Observable<any>{
@@ -29,6 +37,10 @@ export class UserService {
   resetPassword(body:any):Observable<any>{
     return this.httpClient.post(environment.baseUrl+"User/ResetPassword",body)
   }
+  
+  updateUsername(body:any):Observable<any>{
+    return this.httpClient.patch(environment.baseUrl+"User/UpdateUsername",body)
+  }
 
   updateEmail(body:any):Observable<any>{
     return this.httpClient.patch(environment.baseUrl+"User/UpdateEmail",body)
@@ -36,10 +48,6 @@ export class UserService {
 
   updatePassword(body:any):Observable<any>{
     return this.httpClient.patch(environment.baseUrl+"User/UpdatePassword",body)
-  }
-  
-  updateSecurityKey(body:any):Observable<any>{
-    return this.httpClient.patch(environment.baseUrl+"User/UpdateSecurityKey",body)
   }
 
   deleteUser(userId:string):Observable<any>{

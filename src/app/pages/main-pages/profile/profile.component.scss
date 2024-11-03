@@ -20,8 +20,17 @@
 }
 
 .input-group{
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 0;
+}
+
+.input-message-handler{
+    min-height: 30px;
+}
+
+.input-message{
+    font-size: 15px;
+    margin: 0;
+    color: red;   
 }
 
 .profil-input-sign{
@@ -30,6 +39,7 @@
 
 .managment-btn-handler{
     width: 100%;
+    margin-top: 30px;
     display: flex;
 }
 
@@ -59,10 +69,6 @@
 
 .invisable{
     display: none;
-}
-
-.danger-text{
-    color: red;
 }
 
 .edit-password-input-sign{
