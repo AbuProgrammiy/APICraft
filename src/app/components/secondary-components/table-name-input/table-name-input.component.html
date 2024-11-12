@@ -14,6 +14,9 @@
         <input [(ngModel)]="tableName" data-bs-theme="dark" type="text" class="form-control input">
     </div>
     <div class="content-handler">
+        <input [(ngModel)]="tableName" data-bs-theme="dark" type="text" class="form-control input">
+    </div>
+    <div class="content-handler">
         <button (click)="next()" [class.disabled]="tableName==undefined||tableName==''||isLoading==true" class="btn btn-success">
             @if(isLoading){
             <div class="spinner-border spinner-border-sm" role="status">

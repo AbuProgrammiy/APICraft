@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { jwtDecode } from 'jwt-decode';
 import { TableService } from '../../../services/table/table.service';
 import { MessageService } from 'primeng/api';
-import { error } from 'console';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'table-name-input',

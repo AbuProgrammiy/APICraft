@@ -7,15 +7,16 @@ import { GenerateApiComponent } from './pages/main-pages/generate-api/generate-a
 import { ExampleComponent } from './example/example.component';
 import { ProfileComponent } from './pages/main-pages/profile/profile.component';
 import { NewsComponent } from './pages/main-pages/news/news.component';
+import { TableNameInputComponent } from './components/secondary-components/table-name-input/table-name-input.component';
 
 const routes: Routes = [
   {path:"example",component:ExampleComponent},
   {path:"sign-in-up",component:SignInUpComponent},
   {path:"my-apis",component:MyAPIsComponent},
   {path:"generate-api",component:GenerateApiComponent},
-  {path:"news",component:NewsComponent
-},
+  {path:"news",component:NewsComponent},
   {path:"profile",component:ProfileComponent},
+  {path:"example",component:TableNameInputComponent},
   {path:"",component:HomeComponent}
 ];
 
