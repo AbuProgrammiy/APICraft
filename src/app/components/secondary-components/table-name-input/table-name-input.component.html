@@ -1,4 +1,4 @@
-<div class="main">
+<div class="main" data-bs-theme="dark">
     <p (click)="back()" class="back-arrow">&#8592;</p>
     <div class="content-handler">
         <h3 class="header">
@@ -11,13 +11,43 @@
         </h3>
     </div>
     <div class="content-handler">
-        <input [(ngModel)]="tableName" data-bs-theme="dark" type="text" class="form-control input">
+        <div>
+            <div class="input-group input">
+                <span class="input-group-text" id="basic-addon1">
+                    @if (lang=="Uzbek") {
+                    Table name
+                    }
+                    @else if (lang=="English") {
+                    Table nomi
+                    }
+                </span>
+                <input [(ngModel)]="table.name" (input)="tableNameMessage=''" [placeholder]="lang=='Uzbek'?'table nomi':'table name'" type="text"
+                    class="form-control">
+            </div>
+            <div class="input-message-handler">
+                <p class="input-message">{{tableNameMessage}}</p>
+            </div>
+        </div>
     </div>
     <div class="content-handler">
-        <input [(ngModel)]="tableName" data-bs-theme="dark" type="text" class="form-control input">
+        <div class="content-handler description-textarea">
+            <div class="input-group">
+                <span class="input-group-text">
+                    @if (lang=="Uzbek") {
+                    Tavsifi
+                    }
+                    @else if (lang=="English") {
+                    Description
+                    }
+                </span>
+                <textarea [(ngModel)]="table.description" [placeholder]="lang=='Uzbek'?'ixtiyoriy':'optional'" class="form-control"
+                    aria-label="With textarea"></textarea>
+            </div>
+        </div>
     </div>
     <div class="content-handler">
-        <button (click)="next()" [class.disabled]="tableName==undefined||tableName==''||isLoading==true" class="btn btn-success">
+        <button (click)="next()" [class.disabled]="table.name==null||table.name==''||isLoading==true"
+            class="btn btn-success">
             @if(isLoading){
             <div class="spinner-border spinner-border-sm" role="status">
                 <span class="visually-hidden">Loading...</span>

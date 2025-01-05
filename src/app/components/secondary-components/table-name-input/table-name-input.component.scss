@@ -3,6 +3,16 @@
     min-height: 92vh;
 }
 
+.back-arrow{
+    margin-left: 40px;
+    color: white;
+    font-size: 50px;
+}
+
+.back-arrow:hover{
+    cursor: pointer;
+}
+
 .content-handler{
     width: 100%;
     display: flex;
@@ -13,19 +23,23 @@
     color: white;
 }
 
+.input-message-handler {
+    min-height: 30px;
+}
+
+.input-message {
+    font-size: 15px;
+    margin: 0;
+    color: red;
+}
+
 .input{
-    width: 300px;
+    width: 500px;
     margin-top: 50px;
 }
 
-.back-arrow{
-    margin-left: 40px;
-    color: white;
-    font-size: 50px;
-}
-
-.back-arrow:hover{
-    cursor: pointer;
+.description-textarea{
+    width: 500px;
 }
 
 .btn{

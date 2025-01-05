@@ -16,8 +16,13 @@ export class TableNameInputComponent {
   constructor(private tableService: TableService, private messageService: MessageService) { }
 
   isLoading: boolean = false
-  tableName!: string
+  tableNameMessage!: string
   userId: string = (jwtDecode(localStorage.getItem("accessToken")!) as any).Id
+
+  table = {
+    name: null,
+    description: null
+  }
 
   back() {
     this.changeCurrentMode.emit("choosingMode")
@@ -26,13 +31,16 @@ export class TableNameInputComponent {
   next() {
     this.isLoading = true
 
-    this.tableService.isTableNameExistsByUserId(this.userId, this.tableName).subscribe({
+    this.tableService.isTableNameExistsByUserId(this.userId, this.table.name!).subscribe({
       next: (response) => {
-        if (response == false) {
-          this.sendTableName.emit(this.tableName)
+        if (response.statusCode == 200) {
+          this.sendTableName.emit(this.table)
+        }
+        else if (response.statusCode == 400) {
+          this.tableNameMessage=this.lang=="Uzbek"?"Table allaqchon mavjud!":response.response
         }
         else {
-          this.messageService.add({ severity: 'contrast', summary: 'Warning', detail: 'This table already exists!' });
+          this.messageService.add({ severity: 'contrast', summary: 'Warning', detail: response.response });
         }
         this.isLoading = false
       },
