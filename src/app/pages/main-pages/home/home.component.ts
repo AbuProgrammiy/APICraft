@@ -25,26 +25,33 @@ export class HomeComponent {
   }
 
   sectionScrollManager() {
-    const sections: any = document.querySelectorAll('.section');
+    let sections: any
+
+    if(typeof document !== "undefined"){
+      sections = document.querySelectorAll('.section');
+    }
 
     let isScrolling: any;
-    window.addEventListener('scroll', () => {
-      window.clearTimeout(isScrolling);
-      isScrolling = setTimeout(() => {
-        let closestSection = sections[0];
-        let minDistance = Math.abs(window.scrollY - sections[0].offsetTop);
 
-        sections.forEach((section: { offsetTop: number; }) => {
-          const distance = Math.abs(window.scrollY - section.offsetTop);
-          if (distance < minDistance) {
-            minDistance = distance;
-            closestSection = section;
-          }
-        });
-
-        closestSection.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    });
+    if(typeof window!=='undefined'){
+      window.addEventListener('scroll', () => {
+        window.clearTimeout(isScrolling);
+        isScrolling = setTimeout(() => {
+          let closestSection = sections[0];
+          let minDistance = Math.abs(window.scrollY - sections[0].offsetTop);
+  
+          sections.forEach((section: { offsetTop: number; }) => {
+            const distance = Math.abs(window.scrollY - section.offsetTop);
+            if (distance < minDistance) {
+              minDistance = distance;
+              closestSection = section;
+            }
+          });
+  
+          closestSection.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      });
+    }
   }
 
   getBasicStatistics() {
